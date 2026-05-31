@@ -62,7 +62,7 @@ Hoặc file `.env` ở thư mục gốc (do `pull_models.ps1` / `pull_models.sh`
 | Ollama | cài qua `0_setup/setup` | chạy LLM + embedding |
 | Docker Desktop | **chỉ cần nếu dùng Open WebUI** | giao diện chat khuyến nghị — [tải về](https://www.docker.com/products/docker-desktop/); `setup` KHÔNG tự cài |
 
-> Học bằng **notebook/CLI**: chỉ cần Ollama + Python. Dùng giao diện **Open WebUI** (đẹp như ChatGPT, kéo–thả tài liệu để hỏi đáp): cài thêm Docker Desktop. Lưu ý: RAG trong Open WebUI là **độc lập** với pipeline RAG bạn tự code ở Phần 2 — cả hai đều hữu ích, một cái không cần code, một cái dạy bạn cơ chế bên trong.
+> Học bằng **notebook/CLI**: chỉ cần Ollama + Python. Dùng giao diện **Open WebUI** (đẹp như ChatGPT, kéo–thả tài liệu để hỏi đáp): cài thêm Docker Desktop. (Docker bị chặn? Học đủ bằng notebook/CLI; hoặc `pip install open-webui` — không cần Docker nhưng lần đầu nặng ~2.5GB/~20'.) Lưu ý: RAG trong Open WebUI là **độc lập** với pipeline RAG bạn tự code ở Phần 2 — cả hai đều hữu ích, một cái không cần code, một cái dạy bạn cơ chế bên trong.
 
 ---
 

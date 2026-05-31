@@ -46,7 +46,7 @@ chmod +x 0_setup/setup.sh 0_setup/pull_models.sh    # cấp quyền chạy
 | GPU | Không bắt buộc | NVIDIA RTX 3050+, Apple Silicon M1+ |
 | Docker Desktop | Không cần (notebook/CLI) | **Cần nếu dùng Open WebUI** — cài tay từ [docker.com](https://www.docker.com/products/docker-desktop/) |
 
-> ⚠️ Script `setup.ps1`/`setup.sh` **KHÔNG** cài Docker. Muốn dùng giao diện chat **Open WebUI** (khuyến nghị) thì cài [Docker Desktop](https://www.docker.com/products/docker-desktop/) thủ công trước.
+> ⚠️ Script `setup.ps1`/`setup.sh` **KHÔNG** cài Docker. Muốn dùng giao diện chat **Open WebUI** (khuyến nghị) thì cài [Docker Desktop](https://www.docker.com/products/docker-desktop/) thủ công trước. **Docker bị chặn?** Vẫn học đủ bằng notebook/CLI; hoặc dùng `pip install open-webui` (không cần Docker nhưng lần đầu nặng ~2.5GB/~20').
 
 ### 👉 Cách kiểm tra máy bạn (Windows)
 

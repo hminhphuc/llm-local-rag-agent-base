@@ -143,6 +143,8 @@ docker compose up -d        # khởi động Open WebUI
 # Mở trình duyệt: http://localhost:3000
 ```
 
+> 🚧 **Docker bị chặn (máy công ty) hoặc không muốn cài?** Bạn vẫn **học đầy đủ** chỉ với notebook/CLI — giao diện chỉ là phần tiện thêm, không bắt buộc. Nếu vẫn muốn UI đẹp mà không cần Docker: `pip install open-webui` rồi `open-webui serve` (mở http://localhost:8000) — nhưng **lần đầu cài rất nặng (~2.5GB, ~20 phút)**, cân nhắc kỹ.
+
 > 💡 **Nâng cao (tùy chọn):** tự mở rộng repo bằng AI (Cursor/Claude Code) → đọc [VIBE_CODING.md](VIBE_CODING.md).
 
 ---
