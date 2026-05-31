@@ -1,0 +1,16 @@
+2026-05-29 08:12:03 INFO  sshd: Accepted password for user1 from 10.0.1.50 port 54321
+2026-05-29 08:45:11 INFO  sshd: Accepted password for admin from 10.0.1.10 port 51234
+2026-05-29 09:03:22 WARN  sshd: Failed password for root from 203.0.113.42 port 38291
+2026-05-29 09:03:24 WARN  sshd: Failed password for root from 203.0.113.42 port 38292
+2026-05-29 09:03:26 WARN  sshd: Failed password for root from 203.0.113.42 port 38293
+2026-05-29 09:03:28 WARN  sshd: Failed password for admin from 203.0.113.42 port 38294
+2026-05-29 09:03:30 WARN  sshd: Failed password for admin from 203.0.113.42 port 38295
+2026-05-29 09:03:32 WARN  sshd: Failed password for guest from 203.0.113.42 port 38296
+2026-05-29 09:03:34 WARN  sshd: Failed password for user1 from 203.0.113.42 port 38297
+2026-05-29 09:03:36 WARN  sshd: Failed password for user2 from 203.0.113.42 port 38298
+2026-05-29 09:03:38 ERROR sshd: 47 failed login attempts from 203.0.113.42 in last 60s - rate limit triggered
+2026-05-29 10:15:01 INFO  sshd: Accepted publickey for user1 from 10.0.1.50 port 55001
+2026-05-29 11:22:18 INFO  sudo: user1 : TTY=pts/0 ; PWD=/home/user1 ; USER=root ; COMMAND=/bin/systemctl restart nginx
+2026-05-29 14:05:09 WARN  sshd: Failed password for backup from 198.51.100.7 port 41201
+2026-05-29 14:05:12 WARN  sshd: Failed password for backup from 198.51.100.7 port 41202
+2026-05-29 14:05:14 WARN  sshd: Failed password for jenkins from 198.51.100.7 port 41203

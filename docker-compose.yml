@@ -1,0 +1,23 @@
+# Track A: Open WebUI - chat UI có sẵn cho Ollama, hỗ trợ RAG + tool calling
+# Chạy: docker compose up -d, sau đó mở http://localhost:3000
+#
+# Lưu ý: Cần Ollama chạy ở host (đã cài qua 0_setup/setup.ps1).
+# Open WebUI sẽ tự kết nối đến Ollama qua host.docker.internal:11434.
+
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    ports:
+      - "3000:8080"
+    environment:
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - WEBUI_AUTH=False  # Tắt auth cho lab, BẬT lại khi production
+    volumes:
+      - open-webui-data:/app/backend/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+volumes:
+  open-webui-data:

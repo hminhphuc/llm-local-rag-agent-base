@@ -1,0 +1,35 @@
+%%{init: {'theme':'base', 'themeVariables': {'fontFamily':'Segoe UI, Arial', 'clusterBkg':'#f8fafc', 'clusterBorder':'#cbd5e1'}}}%%
+flowchart LR
+    subgraph Clients["AI Clients (mọi framework)"]
+        direction TB
+        Claude["Claude Desktop"]
+        Cursor["Cursor IDE"]
+        Custom["Custom Agent<br/>(Pydantic AI)"]
+    end
+
+    MCP{{"MCP Protocol<br/>chuẩn mở Anthropic 2024"}}
+
+    subgraph Servers["MCP Servers (tool độc lập)"]
+        direction TB
+        FS["filesystem<br/>đọc file"]
+        Slack["slack<br/>gửi message"]
+        Doc["internal_docs<br/>RAG nội bộ"]
+        IP["ip_reputation<br/>check IP"]
+    end
+
+    Claude <--> MCP
+    Cursor <--> MCP
+    Custom <--> MCP
+
+    MCP <--> FS
+    MCP <--> Slack
+    MCP <--> Doc
+    MCP <--> IP
+
+    classDef clientClass fill:#dbeafe,stroke:#1e40af,stroke-width:2px
+    classDef protoClass fill:#fde68a,stroke:#92400e,stroke-width:3px
+    classDef serverClass fill:#dcfce7,stroke:#166534,stroke-width:2px
+
+    class Claude,Cursor,Custom clientClass
+    class MCP protoClass
+    class FS,Slack,Doc,IP serverClass

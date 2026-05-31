@@ -1,0 +1,23 @@
+%%{init: {'theme':'base', 'themeVariables': {'fontFamily':'Segoe UI, Arial', 'clusterBkg':'#f8fafc', 'clusterBorder':'#cbd5e1'}}}%%
+flowchart TB
+    subgraph RAG["Rủi ro RAG"]
+        direction TB
+        R1["1 RAG Poisoning<br/>Tài liệu nhiễm prompt injection"]
+        R2["2 PII Leakage<br/>Embedding bị reverse"]
+        R3["3 Permission Bypass<br/>RAG retrieve tài liệu Mật"]
+        R4["4 Context Overflow<br/>File lớn chiếm context"]
+    end
+
+    subgraph Agent["Rủi ro Agent"]
+        direction TB
+        A1["1 Path Traversal<br/>Tool đọc file ngoài scope"]
+        A2["2 Prompt Injection leo thang<br/>Tài liệu lừa gọi tool destructive"]
+        A3["3 Tool Abuse Loop<br/>Gọi tool đắt liên tục"]
+        A4["4 Data Exfiltration<br/>Tool gửi data ra ngoài"]
+    end
+
+    classDef ragClass fill:#fee2e2,stroke:#991b1b,stroke-width:2px
+    classDef agentClass fill:#fed7aa,stroke:#9a3412,stroke-width:2px
+
+    class R1,R2,R3,R4 ragClass
+    class A1,A2,A3,A4 agentClass

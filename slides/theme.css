@@ -1,0 +1,405 @@
+/* @theme workshop */
+/* Custom Marp theme cho workshop Local LLM + RAG + Agent
+ * Phù hợp giáo dục công nghệ:
+ * - Sans-serif modern (Inter / Segoe UI)
+ * - Navy + blue accent
+ * - Code highlighting rõ ràng
+ * - Spacing rộng rãi, dễ đọc
+ */
+
+@import 'default';
+
+:root {
+    --navy: #0f172a;
+    --primary: #1e40af;
+    --primary-light: #3b82f6;
+    --accent: #06b6d4;
+    --bg: #ffffff;
+    --bg-soft: #f8fafc;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --code-bg: #1e293b;
+    --code-text: #e2e8f0;
+    --success: #16a34a;
+    --warning: #f59e0b;
+    --danger: #dc2626;
+}
+
+section {
+    font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 22px;
+    padding: 56px 70px 64px 70px;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    /* Top-align nội dung để mọi slide có nhịp dọc nhất quán (title cùng 1 cao độ).
+       Lead/divider override lại thành center bên dưới. */
+    justify-content: flex-start;
+}
+
+/* Heading hierarchy */
+h1 {
+    color: var(--navy);
+    font-size: 44px;
+    font-weight: 700;
+    margin: 0 0 28px 0;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    color: var(--primary);
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0 0 18px 0;
+    line-height: 1.25;
+}
+
+h3 {
+    color: var(--text);
+    font-size: 24px;
+    font-weight: 600;
+    margin: 18px 0 12px 0;
+}
+
+p, ul, ol {
+    margin: 12px 0;
+}
+
+ul, ol {
+    padding-left: 28px;
+}
+
+li {
+    margin: 6px 0;
+}
+
+li::marker {
+    color: var(--primary);
+}
+
+strong {
+    color: var(--navy);
+    font-weight: 600;
+}
+
+em {
+    color: var(--primary);
+    font-style: normal;
+    font-weight: 500;
+}
+
+/* Code blocks */
+code {
+    font-family: 'Cascadia Code', 'Consolas', 'Monaco', monospace;
+    background: var(--bg-soft);
+    color: var(--primary);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.92em;
+    border: 1px solid var(--border);
+}
+
+pre {
+    background: var(--code-bg);
+    color: var(--code-text);
+    padding: 22px 26px;
+    border-radius: 10px;
+    font-size: 18px;
+    line-height: 1.55;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+    overflow-x: auto;
+    margin: 18px 0;
+}
+
+pre code {
+    background: transparent;
+    color: var(--code-text);
+    padding: 0;
+    border: none;
+    font-size: inherit;
+}
+
+/* Syntax colors - thường được Marp xử lý qua highlight.js */
+.hljs-keyword { color: #c084fc; }
+.hljs-string { color: #86efac; }
+.hljs-comment { color: #94a3b8; font-style: italic; }
+.hljs-number { color: #fbbf24; }
+.hljs-function { color: #60a5fa; }
+
+/* Tables */
+section table,
+table {
+    width: 100% !important;
+    display: table !important;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 19px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+    background: var(--bg-soft);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* Blockquote - dùng cho lưu ý quan trọng */
+blockquote {
+    border-left: 4px solid var(--primary-light);
+    background: var(--bg-soft);
+    padding: 14px 22px;
+    margin: 18px 0;
+    border-radius: 0 8px 8px 0;
+    color: var(--text);
+}
+
+blockquote p {
+    margin: 4px 0;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+}
+
+/* ============================================ */
+/* TITLE slide (lead) - sử dụng class="lead" */
+/* ============================================ */
+section.lead {
+    background: linear-gradient(135deg, #0f172a 0%, #1e40af 60%, #3b82f6 100%);
+    color: white;
+    justify-content: center;
+    text-align: center;
+}
+
+section.lead h1 {
+    color: white;
+    font-size: 60px;
+    margin: 0 0 20px 0;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+section.lead h2 {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0 0 36px 0;
+}
+
+section.lead h3 {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+section.lead p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 18px;
+}
+
+section.lead code {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+section.lead strong {
+    color: white;
+}
+
+/* ============================================ */
+/* SECTION DIVIDER - class="divider" */
+/* ============================================ */
+section.divider {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    color: white;
+    justify-content: center;
+    text-align: center;
+    padding: 80px;
+}
+
+section.divider h1 {
+    color: white;
+    font-size: 56px;
+    margin: 0 0 20px 0;
+}
+
+section.divider h2 {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 24px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+section.divider p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 22px;
+}
+
+/* ============================================ */
+/* DEMO slide - class="demo" */
+/* ============================================ */
+section.demo {
+    background: var(--code-bg);
+    color: var(--code-text);
+}
+
+section.demo h1, section.demo h2 {
+    color: var(--accent);
+}
+
+section.demo code {
+    background: rgba(255, 255, 255, 0.1);
+    color: #86efac;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+section.demo pre {
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+section.demo strong {
+    color: var(--accent);
+}
+
+/* ============================================ */
+/* Small slide modifiers via classes */
+/* ============================================ */
+
+/* Centered content */
+.center {
+    text-align: center;
+}
+
+/* Two-column layout */
+.columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.columns-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+}
+
+/* Highlight box */
+.highlight {
+    background: linear-gradient(135deg, #dbeafe, #e0e7ff);
+    border-left: 4px solid var(--primary);
+    padding: 16px 24px;
+    border-radius: 0 10px 10px 0;
+    margin: 14px 0;
+}
+
+.warning-box {
+    background: #fef3c7;
+    border-left: 4px solid var(--warning);
+    padding: 16px 24px;
+    border-radius: 0 10px 10px 0;
+}
+
+.success-box {
+    background: #dcfce7;
+    border-left: 4px solid var(--success);
+    padding: 16px 24px;
+    border-radius: 0 10px 10px 0;
+}
+
+.danger-box {
+    background: #fee2e2;
+    border-left: 4px solid var(--danger);
+    padding: 16px 24px;
+    border-radius: 0 10px 10px 0;
+}
+
+/* Big number / stat */
+.big-stat {
+    font-size: 80px;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+    text-align: center;
+}
+
+.stat-label {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 18px;
+    margin-top: 6px;
+}
+
+/* Footer */
+section::after {
+    content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
+    position: absolute;
+    bottom: 18px;
+    right: 30px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+section.lead::after,
+section.divider::after {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Header (footer text) */
+header {
+    position: absolute;
+    top: 18px;
+    left: 30px;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+section.lead header,
+section.divider header,
+section.demo header {
+    display: none;
+}
+
+footer {
+    position: absolute;
+    bottom: 18px;
+    left: 30px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+section.lead footer,
+section.divider footer {
+    display: none;
+}

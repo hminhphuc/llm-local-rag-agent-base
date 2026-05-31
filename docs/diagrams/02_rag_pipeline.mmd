@@ -1,0 +1,35 @@
+%%{init: {'theme':'base', 'themeVariables': {'fontFamily':'Segoe UI, Arial', 'clusterBkg':'#f8fafc', 'clusterBorder':'#cbd5e1'}}}%%
+flowchart LR
+    subgraph Offline["Offline (build index 1 lần)"]
+        direction LR
+        Docs[("Tài liệu<br/>nội bộ")]
+        Loader["1 Loader<br/>đọc file"]
+        Chunker["2 Chunker<br/>cắt nhỏ"]
+        Embedder["3 Embedder<br/>text→vector"]
+        Store[("4 Vector DB<br/>ChromaDB")]
+
+        Docs --> Loader --> Chunker --> Embedder --> Store
+    end
+
+    subgraph Online["Online (mỗi câu hỏi)"]
+        direction LR
+        Q[/"Câu hỏi<br/>user"/]
+        QEmb["Embed<br/>câu hỏi"]
+        Retrieve["5 Retrieve<br/>top-k chunks"]
+        Generate["6 Generate<br/>LLM trả lời"]
+        Ans[/"Câu trả lời<br/>+ nguồn"/]
+
+        Q --> QEmb --> Retrieve --> Generate --> Ans
+    end
+
+    Store -.query.-> Retrieve
+
+    classDef offlineClass fill:#dbeafe,stroke:#1e40af,stroke-width:2px
+    classDef onlineClass fill:#fef3c7,stroke:#92400e,stroke-width:2px
+    classDef storeClass fill:#dcfce7,stroke:#166534,stroke-width:2px
+    classDef ioClass fill:#fce7f3,stroke:#9d174d,stroke-width:2px
+
+    class Loader,Chunker,Embedder offlineClass
+    class QEmb,Retrieve,Generate onlineClass
+    class Docs,Store storeClass
+    class Q,Ans ioClass

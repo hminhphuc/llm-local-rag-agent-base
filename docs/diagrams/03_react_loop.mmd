@@ -1,0 +1,21 @@
+%%{init: {'theme':'base', 'themeVariables': {'fontFamily':'Segoe UI, Arial', 'clusterBkg':'#f8fafc', 'clusterBorder':'#cbd5e1'}}}%%
+flowchart TB
+    Start([User: Thời tiết Hà Nội thế nào,<br/>có nên mang ô không?])
+
+    T1{{"Thought: cần tra thời tiết trước"}}
+    A1["Action: get_weather('Hà Nội')"]
+    O1["Observation: Mưa, 24°C"]
+    T2{{"Thought: mưa → nên mang ô. Đủ thông tin."}}
+    Done([Trả lời: Hà Nội đang mưa,<br/>bạn nên mang ô.])
+
+    Start --> T1 --> A1 --> O1 --> T2 --> Done
+
+    classDef thought fill:#e0e7ff,stroke:#3730a3,stroke-width:2px,color:#0f172a
+    classDef action fill:#fef3c7,stroke:#b45309,stroke-width:2px,color:#0f172a
+    classDef obs fill:#dcfce7,stroke:#166534,stroke-width:2px,color:#0f172a
+    classDef io fill:#dbeafe,stroke:#1e40af,stroke-width:2px,color:#0f172a
+
+    class T1,T2 thought
+    class A1 action
+    class O1 obs
+    class Start,Done io

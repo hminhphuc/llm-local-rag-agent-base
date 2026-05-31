@@ -1,0 +1,23 @@
+%%{init: {'theme':'base', 'themeVariables': {'fontFamily':'Segoe UI, Arial', 'clusterBkg':'#f8fafc', 'clusterBorder':'#cbd5e1'}}}%%
+flowchart TB
+    subgraph Space["Không gian embedding (đơn giản hóa 2D)"]
+        direction TB
+        A["xe máy"]
+        B["xe đạp"]
+        C["ô tô"]
+        D["rau muống xào tỏi"]
+
+        A -. "d ≈ 0.18" .- B
+        A -. "d ≈ 0.30" .- C
+        A == "d ≈ 0.85 (xa, khác nghĩa)" ==> D
+    end
+
+    Note["Text có nghĩa gần nhau<br/>→ vector gần nhau<br/>→ distance nhỏ"]
+
+    classDef near fill:#dbeafe,stroke:#1e40af,stroke-width:2px,color:#0f172a
+    classDef far fill:#fef3c7,stroke:#b45309,stroke-width:2px,color:#0f172a
+    classDef note fill:#fce7f3,stroke:#9d174d,stroke-width:2px,color:#0f172a
+
+    class A,B,C near
+    class D far
+    class Note note

@@ -1,0 +1,27 @@
+%%{init: {'theme':'base', 'themeVariables': {'fontFamily':'Segoe UI, Arial', 'clusterBkg':'#f8fafc', 'clusterBorder':'#cbd5e1'}}}%%
+flowchart TB
+    subgraph S1["Scale 1: Lab cá nhân (≤5 user)"]
+        direction LR
+        S1B[Browser] --> S1G[Gradio app] --> S1O[Ollama + ChromaDB<br/>cùng 1 máy]
+    end
+
+    subgraph S2["Scale 2: Nội bộ phòng/ban (10-100 user)"]
+        direction LR
+        S2B[Browser] --> S2N[Nginx] --> S2W[Open WebUI<br/>Docker] --> S2O[Ollama<br/>GPU server]
+        S2W --> S2C[ChromaDB/Qdrant<br/>server riêng]
+    end
+
+    subgraph S3["Scale 3: Toàn đơn vị (100-1000 user)"]
+        direction LR
+        S3B[Browser] --> S3L[Load Balancer] --> S3API[API Gateway<br/>FastAPI]
+        S3API --> S3V[vLLM cluster<br/>3-5 GPU nodes]
+        S3API --> S3Q[Qdrant cluster]
+        S3API --> S3P[Postgres<br/>audit log]
+        S3API --> S3R[Redis<br/>cache]
+        S3API --> S3M[Monitoring<br/>Langfuse]
+    end
+
+    classDef boxClass fill:#dbeafe,stroke:#1e40af,stroke-width:2px
+    classDef scaleClass fill:#fef3c7,stroke:#92400e,stroke-width:2px
+
+    class S1B,S1G,S1O,S2B,S2N,S2W,S2O,S2C,S3B,S3L,S3API,S3V,S3Q,S3P,S3R,S3M boxClass

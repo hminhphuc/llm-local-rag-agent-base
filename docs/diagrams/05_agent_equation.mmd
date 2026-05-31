@@ -1,0 +1,19 @@
+%%{init: {'theme':'base', 'themeVariables': {'fontFamily':'Segoe UI, Arial', 'clusterBkg':'#f8fafc', 'clusterBorder':'#cbd5e1'}}}%%
+flowchart LR
+    LLM["LLM<br/>(Qwen3, Llama...)"]
+    Plus1((+))
+    Tools["Tools<br/>(Python functions)"]
+    Plus2((+))
+    Loop["ReAct Loop<br/>(framework)"]
+    Eq((=))
+    Agent["Agent<br/>tự quyết, tự hành động"]
+
+    LLM --> Plus1 --> Tools --> Plus2 --> Loop --> Eq --> Agent
+
+    classDef compClass fill:#dbeafe,stroke:#1e40af,stroke-width:2px,color:#000
+    classDef opClass fill:#fef3c7,stroke:#92400e,stroke-width:2px,color:#000
+    classDef resultClass fill:#dcfce7,stroke:#166534,stroke-width:3px,color:#000
+
+    class LLM,Tools,Loop compClass
+    class Plus1,Plus2,Eq opClass
+    class Agent resultClass
