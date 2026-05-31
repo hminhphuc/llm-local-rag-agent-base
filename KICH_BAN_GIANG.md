@@ -76,7 +76,7 @@ Cân đối: lý thuyết/demo ~51' vs thực hành ~41' (Module 1-2 cân ~50/50
 
 ## 0.2 Demo trực quan (4')
 
-[LƯU Ý] Đây là khoảnh khắc tạo ấn tượng đầu — chuẩn bị sẵn Open WebUI chạy nền, có sẵn vài tài liệu trung tính trong đó (sổ tay, FAQ, ghi chú...).
+[LƯU Ý] Đây là khoảnh khắc tạo ấn tượng đầu. **Chuẩn bị TRƯỚC buổi**: `docker compose up -d` (image đã pull sẵn → ~30s là chạy), mở http://localhost:3000 xác nhận load + có model qwen3:1.7b, **upload sẵn 2-3 tài liệu trung tính** (sổ tay, FAQ, ghi chú...). Demo này hỏng là mất lớp cả buổi.
 
 > "Trước khi vào lý thuyết, để tôi cho các bạn xem một thứ. Đây là một con chatbot, trông giống ChatGPT đúng không?"
 
@@ -390,11 +390,11 @@ Mở browser http://localhost:3000, chọn model qwen3:1.7b, hỏi 2-3 câu. **K
 
 > "Đây là Open WebUI — giao diện chat **giống hệt ChatGPT** nhưng chạy 100% trên máy. Có lịch sử hội thoại, đổi model, và **kéo–thả tài liệu để hỏi đáp** (RAG sẵn trong giao diện). Cài đúng 1 lệnh Docker, không viết dòng code nào."
 
-[LƯU Ý] Open WebUI chính thức: [openwebui.com](https://openwebui.com). Cần Docker Desktop + Ollama đang chạy. `docker-compose.yml` đặt `WEBUI_AUTH=False` để vào thẳng giao diện (lab) — bật lại auth khi production.
+[LƯU Ý] Open WebUI chính thức: [openwebui.com](https://openwebui.com). Cần Docker Desktop + Ollama đang chạy. `docker-compose.yml` đặt `WEBUI_AUTH=False` để vào thẳng giao diện (lab) — bật lại auth khi production. **QUAN TRỌNG: trước buổi chạy `docker compose pull` để tải sẵn image (~1GB) — tránh khóa 5'+ đầu buổi.**
 
 > "Đây là cú 'wow moment' — sau Module 2 các bạn đã có một trợ lý tra cứu **tài liệu của riêng mình**, chạy offline, giao diện đẹp như ChatGPT mà không cần code."
 
-[LƯU Ý] Muốn cho học viên thấy RAG 'bằng code của chính mình' (~80 dòng): repo có sẵn `2_rag/app.py` (Gradio) như **ví dụ nâng cao tùy chọn** — không bắt buộc, để học viên về tự xem.
+[LƯU Ý] Open WebUI có RAG **sẵn trong giao diện** (kéo–thả tài liệu, không cần code) — nó KHÔNG dùng `rag_minimal.py` của học viên, mà là RAG **độc lập** của Open WebUI. Tùy chọn nâng cao: repo có `2_rag/app.py` (Gradio) để ai muốn tự build UI cho code của mình — **không demo trên lớp**, để học viên về tự xem.
 
 ## 2.5 Góc bảo mật RAG — overview (2')
 
@@ -593,13 +593,14 @@ User: "Thời tiết Hà Nội thế nào, có nên mang ô không?"
 
 ## Trước buổi
 - Cài + pull **qwen3:1.7b + nomic-embed-text** trước trên máy giảng → tránh chờ pull live
+- **Pull sẵn image Open WebUI**: `docker compose pull` (~1GB, lần đầu) → tránh khóa ~5' đầu buổi
 - **Build `anninh` custom model**: sửa `Modelfile.anninh` thành `FROM qwen3:1.7b`, chạy `ollama create anninh -f Modelfile.anninh`
 - **Build RAG index**: `python 2_rag/rag_minimal.py --build` (mất ~30s)
 - **Smoke test 3 file chính**:
   - `python 1_ollama_basics/01_chat.py`
   - `python 2_rag/rag_minimal.py --ask "Quy trình xử lý sự cố ATTT?"`
   - `python 3_agent/agent_simple.py --ask "Bây giờ là mấy giờ?"`
-- Test demo Open WebUI hoạt động + có sẵn vài tài liệu
+- **Khởi động & test Open WebUI**: `docker compose up -d` (đợi ~30s) → mở http://localhost:3000, xác nhận trang load + dropdown có qwen3:1.7b + hỏi 1 câu có trả lời. Upload sẵn 2-3 tài liệu mẫu. Lỗi → `docker ps` / `docker logs open-webui`
 - Mở sẵn jupyter lab + 3 notebook
 - Chuẩn bị slide minh họa (vẽ tay/digital) cho các phần [BẢNG]
 - Gửi email cho học viên: yêu cầu chạy `setup.ps1` / `setup.sh` trước buổi

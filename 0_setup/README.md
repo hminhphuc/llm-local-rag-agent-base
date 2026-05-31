@@ -44,6 +44,9 @@ chmod +x 0_setup/setup.sh 0_setup/pull_models.sh    # cấp quyền chạy
 | OS | Win10 / macOS 12 / Ubuntu 20.04 | Bản mới nhất |
 | Python | 3.10 | 3.11+ |
 | GPU | Không bắt buộc | NVIDIA RTX 3050+, Apple Silicon M1+ |
+| Docker Desktop | Không cần (notebook/CLI) | **Cần nếu dùng Open WebUI** — cài tay từ [docker.com](https://www.docker.com/products/docker-desktop/) |
+
+> ⚠️ Script `setup.ps1`/`setup.sh` **KHÔNG** cài Docker. Muốn dùng giao diện chat **Open WebUI** (khuyến nghị) thì cài [Docker Desktop](https://www.docker.com/products/docker-desktop/) thủ công trước.
 
 ### 👉 Cách kiểm tra máy bạn (Windows)
 

@@ -65,7 +65,7 @@ python docs/render_real_output.py
 python docs/capture_openwebui.py
 ```
 
-> Tùy chọn: nếu dùng giao diện Gradio tự code (`2_rag/app.py`), chụp bằng `docs/capture_gradio.py` (khởi động `python 2_rag/app.py` trước).
+> Giao diện **chính** của workshop là Open WebUI (chụp bằng `capture_openwebui.py` ở trên). `capture_gradio.py` chỉ dùng khi maintain ví dụ nâng cao Gradio (`2_rag/app.py`).
 
 ## Đổi style Word
 

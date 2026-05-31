@@ -75,7 +75,7 @@ python 2_rag/rag_minimal.py --ask "Quy định mật khẩu của đơn vị?"
 
 # 3. Giao diện chat đẹp (giống ChatGPT) → Open WebUI:
 #    docker compose up -d        → mở http://localhost:3000
-#    (Nâng cao: tự build UI bằng code có sẵn — python 2_rag/app.py → http://localhost:7860)
+#    (Nâng cao, TÙY CHỌN — không cần cho workshop: 2_rag/app.py là ví dụ tự build UI bằng code)
 ```
 
 > 🔁 **Nếu đổi embedding model** (vd `nomic-embed-text` → `bge-m3`): index cũ không còn hợp lệ → **xóa thư mục `chroma_db/`** rồi `--build` lại, nếu không kết quả sẽ sai âm thầm.

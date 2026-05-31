@@ -52,6 +52,20 @@ Hoặc file `.env` ở thư mục gốc (do `pull_models.ps1` / `pull_models.sh`
 
 ---
 
+## Chuẩn bị trước khi bắt đầu
+
+| Thành phần | Tối thiểu | Ghi chú |
+|---|---|---|
+| RAM | 8GB (16GB khuyến nghị) | qwen3:1.7b chạy tốt trên 8GB |
+| Ổ trống | ~5GB | model ~1.7GB + image Docker (nếu dùng Open WebUI) |
+| Python | 3.10+ | cho notebook + script CLI |
+| Ollama | cài qua `0_setup/setup` | chạy LLM + embedding |
+| Docker Desktop | **chỉ cần nếu dùng Open WebUI** | giao diện chat khuyến nghị — [tải về](https://www.docker.com/products/docker-desktop/); `setup` KHÔNG tự cài |
+
+> Học bằng **notebook/CLI**: chỉ cần Ollama + Python. Dùng giao diện **Open WebUI** (đẹp như ChatGPT, kéo–thả tài liệu để hỏi đáp): cài thêm Docker Desktop. Lưu ý: RAG trong Open WebUI là **độc lập** với pipeline RAG bạn tự code ở Phần 2 — cả hai đều hữu ích, một cái không cần code, một cái dạy bạn cơ chế bên trong.
+
+---
+
 # Phần 0 — Bản đồ giải mã thuật ngữ (cho người mới)
 
 > Dành cho bạn lần đầu tiếp xúc LLM (không cần background kỹ thuật). Không cần thuộc lòng — tra lại khi gặp trong code/bài giảng.
@@ -938,6 +952,8 @@ sqlite3.OperationalError: database is locked
 2. Container chạy chưa: `docker compose up -d` rồi `docker ps` (phải thấy `open-webui`).
 3. Cổng 3000 bận: đổi mapping trong `docker-compose.yml` (vd `"3001:8080"`), mở http://localhost:3001.
 4. Open WebUI không thấy model: nó kết nối Ollama qua `host.docker.internal:11434` — chắc chắn Ollama đang chạy ở host.
+
+> 🎓 **Giảng viên:** trước buổi chạy `docker compose pull` để **tải sẵn image Open WebUI** (~1GB, 5–10') — tránh demo bị khóa giữa giờ.
 
 ## 7.8 Qwen3 output có block `<think>...</think>` dài
 

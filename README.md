@@ -39,6 +39,9 @@ Workshop cho **nhiều đối tượng**: dân văn phòng, sinh viên, lập tr
 | Ổ trống | 5GB | 10GB |
 | Python | 3.10+ | 3.11+ |
 | Mạng | Chỉ cần để **tải model 1 lần** (~1.7GB) | Sau đó chạy offline |
+| Docker Desktop | Không cần (nếu chỉ học bằng notebook/CLI) | **Cần nếu dùng giao diện Open WebUI** — [tải về](https://www.docker.com/products/docker-desktop/) |
+
+> Học bằng **notebook/CLI**: chỉ cần Ollama + Python. Dùng **giao diện chat Open WebUI** (đẹp như ChatGPT, khuyến nghị): cài thêm **Docker Desktop** — `setup.ps1`/`setup.sh` không tự cài Docker.
 
 <details>
 <summary><b>👉 Cách kiểm tra máy bạn (Windows)</b></summary>

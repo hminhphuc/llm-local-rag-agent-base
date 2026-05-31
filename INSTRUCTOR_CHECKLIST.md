@@ -7,10 +7,13 @@
 
 ## ⏰ Trước buổi 3 ngày — email học viên
 - [ ] Yêu cầu chạy **`setup.ps1`/`setup.sh` + `pull_models`** ở nhà (tải ~1.7GB, **không** tải lại tại lớp).
+- [ ] **Nếu dùng Open WebUI** (giao diện chat chính trên lớp): nhắc cài trước [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 - [ ] Nhắc máy công ty (Windows): test trước lệnh `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`. Bị chặn → báo IT hoặc ngồi cạnh bạn.
 - [ ] Ai lỡ chưa setup: mang USB hoặc chấp nhận chờ.
 
 ## 🔧 Trước buổi 30 phút — trên máy giảng
+- [ ] **Bật Ollama** (Windows: icon khay hệ thống; mac/Linux: `ollama serve`) — mọi bước dưới cần Ollama đang chạy.
+- [ ] **Pull sẵn image Open WebUI** (~1GB, lần đầu 2–5'): `docker compose pull` — không thì `docker compose up -d` đầu buổi sẽ khóa ~5'.
 - [ ] **Pre-build index RAG**: `python 2_rag/rag_minimal.py --build` (~30s) — `chroma_db/` KHÔNG có sẵn trong repo, không build trước thì Module 2 đứng hình giữa demo.
 - [ ] **Warm model** (quan trọng nhất cho hook mở màn): chạy thử 1 lần để nạp model vào cache:
   - `python 1_ollama_basics/01_chat.py`
@@ -19,7 +22,7 @@
 - [ ] (Tùy chọn) Build model custom: sửa `Modelfile.anninh` → `FROM qwen3:1.7b`, `ollama create anninh -f 1_ollama_basics/Modelfile.anninh`.
 - [ ] Mở sẵn & xếp split-screen: **terminal** + **jupyter lab** (3 notebook) + **Open WebUI** (`docker compose up -d` → http://localhost:3000). Tránh mất thời gian chuyển cảnh giữa các module.
 - [ ] **USB/LAN dự phòng**: chép sẵn model (qwen3:1.7b + nomic-embed-text) **và** thư mục `chroma_db/` đã build — cứu học viên thiếu setup.
-- [ ] Mở sẵn 5 ảnh fallback trong `docs/screenshots/` (phòng demo chậm).
+- [ ] Mở sẵn 4 ảnh fallback trong `docs/screenshots/` (open_webui + 3 terminal — phòng demo chậm).
 
 ## ✅ 5 phút đầu giờ — health check cả lớp
 - [ ] Cho cả lớp chạy **`ollama list`** → giơ tay ai thiếu model. Xử lý nhóm nhỏ bằng USB trong lúc giảng Phần 0 (roadmap).
