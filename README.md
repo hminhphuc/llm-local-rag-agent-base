@@ -233,6 +233,7 @@ Bảng lỗi đầy đủ theo từng hệ điều hành: [0_setup/README.md](0_
 ### 🎓 Dành cho giảng viên (học viên bỏ qua)
 | File | Dùng để |
 |---|---|
+| **[INSTRUCTOR_CHECKLIST.md](INSTRUCTOR_CHECKLIST.md)** | ✅ Checklist 1 trang: chuẩn bị trước buổi + câu hỏi an toàn + fallback — **đọc trước tiên** |
 | [KICH_BAN_GIANG.md](KICH_BAN_GIANG.md) | Kịch bản nói chi tiết 2 giờ, có timing |
 | [slides/SLIDES.pptx](slides/SLIDES.pptx) | Slide 23 trang (kèm PDF/HTML) |
 | [BAO_CAO_TEST.md](BAO_CAO_TEST.md) | Báo cáo test end-to-end + các lỗi đã fix |

@@ -375,9 +375,11 @@ Hỏi "xe đạp" tìm được "xe máy" (gần nghĩa), không tìm "rau muố
 <br>
 
 1. Chạy notebook RAG trên dataset mẫu → thấy trích nguồn
-2. ⭐ **Thả 1-2 file của riêng bạn** (`.md`/`.txt`) vào `data/`, build lại, hỏi → AI trả lời theo tài liệu của chính bạn
+2. ⭐ **Thả 1-2 file của riêng bạn** (`.md`/`.txt`) vào `data/`, build lại, hỏi → AI trả lời theo tài liệu của chính bạn _(chưa mang file? dùng `sample_upload/`)_
 3. Đổi `CHUNK_SIZE` 200 / 500 / 1000 → so kết quả (hiểu chunking)
 4. (Bảo mật nhẹ) thả file chứa câu "lừa" → xem RAG có bị dẫn dắt không
+
+> 💬 Hỏi thử (chạy chắc): *"Quy trình xử lý sự cố ATTT?"* · *"USB cá nhân có được dùng không?"*
 
 ---
 

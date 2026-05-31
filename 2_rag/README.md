@@ -80,6 +80,11 @@ python 2_rag/app.py
 
 > 🔁 **Nếu đổi embedding model** (vd `nomic-embed-text` → `bge-m3`): index cũ không còn hợp lệ → **xóa thư mục `chroma_db/`** rồi `--build` lại, nếu không kết quả sẽ sai âm thầm.
 
+> 💬 **Câu hỏi chạy chắc trên dataset mẫu** (embedding hay trượt với mã ngắn như "P1"/"MFA" — thử các câu tự nhiên này trước rồi mới biến tấu):
+> - "Quy trình xử lý sự cố ATTT gồm những bước nào?"
+> - "USB cá nhân có được dùng không?"
+> - "Có được forward email công vụ sang gmail?"
+
 ## Góc bảo mật (nhấn trong giảng bài)
 
 | Rủi ro | Ví dụ | Cách giảm thiểu |
@@ -91,7 +96,7 @@ python 2_rag/app.py
 
 ## Bài tập gợi ý (15 phút thực hành)
 
-1. Thay dataset mẫu bằng PDF của riêng bạn (mở rộng loader để đọc PDF)
+1. ⭐ Thả tài liệu của bạn (`.md` hoặc `.txt`) vào `data/` rồi `--build` lại. Chưa mang theo file? Dùng sẵn [`sample_upload/so_tay_cong_ty_mau.md`](sample_upload/so_tay_cong_ty_mau.md). (PDF: convert sang `.txt` trước — vd qua Google Docs.)
 2. Mở `rag_minimal.py`, đổi dòng `TOP_K = 3` (dòng 77) thành `TOP_K = 5`, chạy lại `--ask` rồi so số đoạn trích nguồn
 3. Thêm metadata filter: chỉ retrieve trong tài liệu có `level: cong_khai`
 4. Đổi embedding từ `nomic-embed-text` sang `bge-m3` (nếu đã pull) — so chất lượng

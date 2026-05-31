@@ -252,7 +252,8 @@ with gr.Blocks(title="RAG An ninh - Trợ lý tài liệu nội bộ") as demo:
             with gr.Group(elem_classes="sidebar-group"):
                 gr.Markdown("### 📚 Tài liệu trong kho")
                 data_dir = Path(__file__).parent / "data"
-                files_md = "\n".join(f"- `{f.name}`" for f in sorted(data_dir.glob("*.md")))
+                data_files = sorted(data_dir.glob("*.md")) + sorted(data_dir.glob("*.txt"))
+                files_md = "\n".join(f"- `{f.name}`" for f in data_files)
                 gr.Markdown(files_md or "_Chưa có file_")
 
         # ============== MAIN CHAT ==============
@@ -299,6 +300,8 @@ with gr.Blocks(title="RAG An ninh - Trợ lý tài liệu nội bộ") as demo:
 # Launch — Gradio 6.x: theme truyền vào launch()
 # ============================================================
 if __name__ == "__main__":
+    print("\n  Gradio đang khởi động tại:  http://127.0.0.1:7860")
+    print("  (mở link trên trong trình duyệt; nếu cổng bận, xem URL Gradio in ngay dưới)\n")
     demo.launch(
         server_name="127.0.0.1",
         server_port=7860,

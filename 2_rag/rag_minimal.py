@@ -81,7 +81,7 @@ TOP_K = 3
 # BƯỚC 1 — LOAD: đọc tài liệu
 # ============================================================
 def load_documents(data_dir: Path) -> list[dict]:
-    """Đọc mọi file .md trong thư mục, trả về list dict.
+    """Đọc mọi file .md và .txt trong thư mục, trả về list dict.
 
     Mỗi dict gồm:
         - source: tên file (để trích nguồn khi trả lời)
@@ -94,9 +94,12 @@ def load_documents(data_dir: Path) -> list[dict]:
         - Đa định dạng: dùng unstructured.io
     """
     docs = []
-    for md_file in sorted(data_dir.glob("*.md")):
-        text = md_file.read_text(encoding="utf-8")
-        docs.append({"source": md_file.name, "text": text})
+    # Đọc cả .md và .txt — đa số tài liệu của bạn rơi vào 2 định dạng này.
+    # Cần PDF/DOCX? Xem gợi ý "MỞ RỘNG cho production" ở trên.
+    paths = sorted(data_dir.glob("*.md")) + sorted(data_dir.glob("*.txt"))
+    for path in paths:
+        text = path.read_text(encoding="utf-8")
+        docs.append({"source": path.name, "text": text})
     return docs
 
 

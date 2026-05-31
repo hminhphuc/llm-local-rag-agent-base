@@ -589,6 +589,8 @@ User: "Thời tiết Hà Nội thế nào, có nên mang ô không?"
 
 # PHỤ LỤC — TIPS GIẢNG VIÊN
 
+> 📋 Bản rút gọn 1 trang để cầm tay khi chuẩn bị: [INSTRUCTOR_CHECKLIST.md](INSTRUCTOR_CHECKLIST.md).
+
 ## Trước buổi
 - Cài + pull **qwen3:1.7b + nomic-embed-text** trước trên máy giảng → tránh chờ pull live
 - **Build `anninh` custom model**: sửa `Modelfile.anninh` thành `FROM qwen3:1.7b`, chạy `ollama create anninh -f Modelfile.anninh`
