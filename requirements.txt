@@ -11,8 +11,8 @@ pypdf>=4.0.0
 pydantic-ai>=0.0.20
 pydantic>=2.0.0
 
-# UI
-gradio>=4.40.0
+# UI (giao diện chính = Open WebUI qua docker-compose.yml)
+gradio>=4.40.0          # tùy chọn — chỉ cần cho UI nâng cao 2_rag/app.py
 
 # Notebook
 jupyterlab>=4.0.0

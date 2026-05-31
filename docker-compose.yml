@@ -1,4 +1,4 @@
-# Track A: Open WebUI - chat UI có sẵn cho Ollama, hỗ trợ RAG + tool calling
+# Open WebUI — giao diện chat khuyến nghị cho Ollama (giống ChatGPT), hỗ trợ RAG + tool calling
 # Chạy: docker compose up -d, sau đó mở http://localhost:3000
 #
 # Lưu ý: Cần Ollama chạy ở host (đã cài qua 0_setup/setup.ps1).

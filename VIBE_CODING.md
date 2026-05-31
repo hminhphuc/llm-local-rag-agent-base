@@ -60,7 +60,7 @@ Trong 2_rag/rag_minimal.py:
 ```
 Tôi muốn build một app phân tích log bảo mật:
 - Reuse module 1, 2, 3 của workshop
-- UI Gradio cho upload file log (.log, .txt)
+- Web UI để upload file log (.log, .txt) — dùng Open WebUI, hoặc tự viết bằng Gradio/FastAPI
 - Agent phân tích: tìm anomaly, đối chiếu chính sách nội bộ, gợi ý hành động
 - Export kết quả ra Markdown report
 

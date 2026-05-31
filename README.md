@@ -127,26 +127,20 @@ Quên bật venv → gặp lỗi `ModuleNotFoundError`. Cứ bật lại rồi c
 
 ---
 
-## 5. Chọn đường đi của bạn
+## 5. Cách học & giao diện
 
-| Bạn là… | Chọn | Làm gì |
-|---|---|---|
-| **Chưa từng lập trình** | **Track A** — Click chuột | Chạy giao diện web Open WebUI, kéo–thả tài liệu, không cần code |
-| **Biết mở terminal / muốn học** | **Track B** — Notebook ⭐ | Mở từng notebook, chạy từng ô, hiểu từng bước (**khuyến nghị**) |
-| **Muốn tự build app riêng** | **Track C** — Vibe coding | Xong Track B rồi, nhờ AI (Cursor/Claude Code) sửa repo theo ý bạn |
+**Học bằng notebook (khuyến nghị):** mở file `.ipynb` từng module bằng Jupyter Lab, chạy từng ô code để hiểu từng bước.
+```bash
+jupyter lab        # đợi trình duyệt tự mở, bấm vào notebook.ipynb của từng module
+```
 
-> Track A và B là **hai cách bắt đầu khác nhau** — chọn 1. Track C làm **sau** khi đã xong Track B.
-
-**Track A — Click-only (không code):** cần cài [Docker Desktop](https://www.docker.com/products/docker-desktop/) trước (script setup **không** tự cài Docker; **Track B/C không cần Docker**). Cần Ollama đang chạy.
+**Giao diện chat — Open WebUI** (giống ChatGPT, chạy 100% local): lịch sử hội thoại, đổi model, **kéo–thả tài liệu để hỏi đáp** — không cần code. Cần cài [Docker Desktop](https://www.docker.com/products/docker-desktop/) trước, và Ollama phải đang chạy:
 ```powershell
 docker compose up -d        # khởi động Open WebUI
 # Mở trình duyệt: http://localhost:3000
 ```
-**Track B — Notebook (khuyến nghị):** Mở file notebook (`.ipynb`) từng module bằng Jupyter Lab, chạy từng ô code. Cách mở:
-```bash
-jupyter lab        # đợi trình duyệt tự mở, bấm vào file notebook.ipynb của từng module
-```
-**Track C — Vibe coding:** đọc [VIBE_CODING.md](VIBE_CODING.md).
+
+> 💡 **Nâng cao (tùy chọn):** tự mở rộng repo bằng AI (Cursor/Claude Code) → đọc [VIBE_CODING.md](VIBE_CODING.md).
 
 ---
 
@@ -165,7 +159,7 @@ Hỏi đáp trên tài liệu của bạn. **Yêu cầu: xây dựng index lần
 ```bash
 python 2_rag/rag_minimal.py --build                          # tạo index (1 lần — bắt buộc cho cả Module 3)
 python 2_rag/rag_minimal.py --ask "Quy định mật khẩu thế nào?"
-python 2_rag/app.py                                          # giao diện web: http://127.0.0.1:7860
+# Giao diện chat đẹp (giống ChatGPT)? → dùng Open WebUI: docker compose up -d → http://localhost:3000
 ```
 
 ### Module 3 — Agent (tùy chọn, giới thiệu) · [chi tiết](3_agent/)
@@ -181,7 +175,7 @@ python 3_agent/agent_simple.py --ask "Bây giờ là mấy giờ?"
 
 ## 7. Tự học hay học trên lớp?
 
-- **Tự học:** làm tuần tự **0 → 1 → 2 → 3** (đừng bỏ Module 2 vì Module 3 cần index của nó). Dùng **Track B (notebook)**. Tổng ~1–2 giờ tùy tốc độ.
+- **Tự học:** làm tuần tự **0 → 1 → 2 → 3** (đừng bỏ Module 2 vì Module 3 cần index của nó). Dùng **notebook**. Tổng ~1–2 giờ tùy tốc độ.
 - **Học trên lớp:** giảng viên dẫn theo slide; bảng phân bổ thời gian ở mục **"Dành cho giảng viên"** cuối trang.
 
 ---
@@ -195,7 +189,7 @@ python 3_agent/agent_simple.py --ask "Bây giờ là mấy giờ?"
 | `Connection refused` / Ollama không phản hồi | Ollama chưa chạy → mở app Ollama (Windows: tìm icon ở khay hệ thống) |
 | Module 3 báo **"Lỗi truy vấn RAG"** | Chưa build index → chạy `python 2_rag/rag_minimal.py --build` |
 | `winget` không nhận diện (Windows) | Cài [App Installer](https://www.microsoft.com/store/productId/9NBLGGH4NNS1) |
-| Cổng `11434` / `7860` / `3000` đang bận | Đã có tiến trình khác chạy — thường không sao, dùng luôn |
+| Cổng `11434` / `3000` đang bận | Đã có tiến trình khác chạy — thường không sao, dùng luôn |
 
 Bảng lỗi đầy đủ theo từng hệ điều hành: [0_setup/README.md](0_setup/README.md). Lỗi sâu hơn: [TAI_LIEU_CHI_TIET.md — Phần 7](TAI_LIEU_CHI_TIET.md).
 
@@ -207,13 +201,13 @@ Bảng lỗi đầy đủ theo từng hệ điều hành: [0_setup/README.md](0_
 .
 ├── 0_setup/              # Script cài đặt (.ps1 cho Windows, .sh cho macOS/Linux)
 ├── 1_ollama_basics/      # ⭐ Module 1: chat, streaming, API, so sánh model
-├── 2_rag/                # Module 2: RAG + giao diện Gradio
+├── 2_rag/                # Module 2: RAG (pipeline + CLI)
 │   └── data/             #   ↳ dataset MẪU (6 file quy chế — thay bằng tài liệu của bạn)
 ├── 3_agent/              # Module 3: agent + 4 tool (có sandbox)
 │   └── sample_logs/      #   ↳ log MẪU để demo
 ├── docs/                 # Tài liệu Word + sơ đồ (xem mục dưới)
 ├── slides/               # Slide bài giảng (cho giảng viên)
-├── docker-compose.yml    # Open WebUI cho Track A
+├── docker-compose.yml    # Open WebUI — giao diện chat khuyến nghị
 ├── requirements.txt      # Thư viện Python cho học viên
 └── VIBE_CODING.md        # Hướng dẫn tự mở rộng repo bằng AI
 ```
@@ -266,7 +260,7 @@ Triết lý: **giảng tập trung trực giác + demo cốt lõi**; chi tiết 
 | Embedding | **nomic-embed-text** | 274MB, đa ngôn ngữ, chạy qua Ollama |
 | Vector DB | **ChromaDB** | Gọn trong 1 file, không cần server riêng |
 | Agent | **Pydantic AI** | Python thuần, type-safe, dễ đọc |
-| Giao diện | **Gradio** + **Open WebUI** | Gradio cho tùy biến linh hoạt; Open WebUI có sẵn đầy đủ tính năng |
+| Giao diện | **Open WebUI** | Giống ChatGPT, đầy đủ tính năng, chạy bằng Docker — không cần code |
 
 ---
 
@@ -278,7 +272,6 @@ Triết lý: **giảng tập trung trực giác + demo cốt lõi**; chi tiết 
 | **Qwen3** | [qwenlm.github.io](https://qwenlm.github.io/) | Alibaba Cloud |
 | **ChromaDB** | [trychroma.com](https://www.trychroma.com) | Chroma |
 | **Pydantic AI** | [ai.pydantic.dev](https://ai.pydantic.dev) | Pydantic |
-| **Gradio** | [gradio.app](https://www.gradio.app) | Hugging Face |
 | **Open WebUI** | [openwebui.com](https://openwebui.com) | OSS community |
 
 Paper nền tảng: **RAG** — [Lewis et al. 2020](https://arxiv.org/abs/2005.11401) · **ReAct** — [Yao et al. 2022](https://arxiv.org/abs/2210.03629). Danh sách đầy đủ: [TAI_LIEU_CHI_TIET.md — Phần 8](TAI_LIEU_CHI_TIET.md).

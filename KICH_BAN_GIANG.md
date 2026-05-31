@@ -54,7 +54,7 @@ Cân đối: lý thuyết/demo ~51' vs thực hành ~41' (Module 1-2 cân ~50/50
 | Hugging Face Hub | [huggingface.co](https://huggingface.co) | Hugging Face |
 | ChromaDB | [trychroma.com](https://www.trychroma.com) | Chroma |
 | Pydantic AI | [ai.pydantic.dev](https://ai.pydantic.dev) | Pydantic (FastAPI team) |
-| Gradio | [gradio.app](https://www.gradio.app) | Hugging Face |
+| Open WebUI | [openwebui.com](https://openwebui.com) | OSS community |
 | Open WebUI | [openwebui.com](https://openwebui.com) | Open source community |
 | MCP (Model Context Protocol) | [modelcontextprotocol.io](https://modelcontextprotocol.io) | Anthropic |
 
@@ -76,7 +76,7 @@ Cân đối: lý thuyết/demo ~51' vs thực hành ~41' (Module 1-2 cân ~50/50
 
 ## 0.2 Demo trực quan (4')
 
-[LƯU Ý] Đây là khoảnh khắc tạo ấn tượng đầu — chuẩn bị sẵn Open WebUI (hoặc Gradio app của Module 2) chạy nền, có sẵn vài tài liệu trung tính trong đó (sổ tay, FAQ, ghi chú...).
+[LƯU Ý] Đây là khoảnh khắc tạo ấn tượng đầu — chuẩn bị sẵn Open WebUI chạy nền, có sẵn vài tài liệu trung tính trong đó (sổ tay, FAQ, ghi chú...).
 
 > "Trước khi vào lý thuyết, để tôi cho các bạn xem một thứ. Đây là một con chatbot, trông giống ChatGPT đúng không?"
 
@@ -379,22 +379,22 @@ chế đơn vị"            quy chế đơn vị trước
 
 > "Để ý: câu trả lời trích nguồn — 'theo tài liệu X'. Đây là điểm cực kỳ quan trọng với MỌI ứng dụng: mọi kết luận của AI phải truy nguồn được, để người dùng kiểm chứng — không tin AI mù quáng."
 
-## 2.4 Demo UI với Gradio (5')
+## 2.4 Demo UI với Open WebUI (5')
 
 [DEMO]
-```bash
-python 2_rag/app.py
+```powershell
+docker compose up -d
 ```
 
-Mở browser http://localhost:7860, hỏi 2-3 câu. Để ý phần nguồn append cuối câu trả lời.
+Mở browser http://localhost:3000, chọn model qwen3:1.7b, hỏi 2-3 câu. **Kéo–thả 1 tài liệu vào** để hỏi đáp ngay trên nội dung đó.
 
-> "Đây là Gradio — thư viện phổ biến nhất trong cộng đồng LLM, được dùng làm chuẩn bởi HuggingFace. So với Streamlit thì nhẹ hơn, khởi động nhanh hơn, và quan trọng nhất: **có streaming sẵn** — các bạn thấy token bay ra theo thời gian thực giống ChatGPT."
+> "Đây là Open WebUI — giao diện chat **giống hệt ChatGPT** nhưng chạy 100% trên máy. Có lịch sử hội thoại, đổi model, và **kéo–thả tài liệu để hỏi đáp** (RAG sẵn trong giao diện). Cài đúng 1 lệnh Docker, không viết dòng code nào."
 
-[LƯU Ý] Gradio chính thức: [gradio.app](https://www.gradio.app) — thuộc Hugging Face. Streamlit: [streamlit.io](https://streamlit.io) — thuộc Snowflake. ChromaDB: [trychroma.com](https://www.trychroma.com).
+[LƯU Ý] Open WebUI chính thức: [openwebui.com](https://openwebui.com). Cần Docker Desktop + Ollama đang chạy. `docker-compose.yml` đặt `WEBUI_AUTH=False` để vào thẳng giao diện (lab) — bật lại auth khi production.
 
-> "80 dòng code Gradio. Có sidebar đổi model live, slider top-k, nguồn trích dẫn ngay cuối câu trả lời. Đây là cú 'wow moment' — sau Module 2 các bạn đã có thể tự build một chatbot tra cứu **tài liệu của riêng mình**, chạy offline, có trích nguồn."
+> "Đây là cú 'wow moment' — sau Module 2 các bạn đã có một trợ lý tra cứu **tài liệu của riêng mình**, chạy offline, giao diện đẹp như ChatGPT mà không cần code."
 
-[LƯU Ý] Gradio mặc định bind 127.0.0.1 (chỉ localhost) — đã cấu hình trong code để an toàn. Nếu muốn share LAN, đổi `server_name="0.0.0.0"`.
+[LƯU Ý] Muốn cho học viên thấy RAG 'bằng code của chính mình' (~80 dòng): repo có sẵn `2_rag/app.py` (Gradio) như **ví dụ nâng cao tùy chọn** — không bắt buộc, để học viên về tự xem.
 
 ## 2.5 Góc bảo mật RAG — overview (2')
 
@@ -623,5 +623,5 @@ User: "Thời tiết Hà Nội thế nào, có nên mang ô không?"
 | Pull model chậm | Switch sang model đã pull sẵn |
 | Notebook lỗi kernel | Restart kernel, chạy lại từ đầu |
 | ChromaDB lỗi | Xóa `chroma_db/`, build lại |
-| Gradio không mở | Check port 7860 free, đổi `server_port=` trong `app.py` |
+| Open WebUI không mở | Docker đang chạy? `docker compose up -d`, mở http://localhost:3000 |
 | Agent không gọi tool | Tăng `retries`, kiểm tra docstring |

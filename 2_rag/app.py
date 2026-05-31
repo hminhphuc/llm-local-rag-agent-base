@@ -1,5 +1,9 @@
 """
-Gradio chat UI cho RAG — đã polish cho Gradio 6.x.
+(TÙY CHỌN / NÂNG CAO) Gradio chat UI cho RAG — ví dụ "tự build giao diện bằng code".
+Giao diện chính của workshop là Open WebUI: `docker compose up -d` → http://localhost:3000.
+File này dành cho ai muốn xem RAG được gói thành UI chỉ trong ~80 dòng code.
+
+Đã polish cho Gradio 6.x.
 
 Cải tiến so với bản trước:
 - Theme Soft (xanh navy, nhẹ nhàng)

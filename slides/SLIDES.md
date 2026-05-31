@@ -356,15 +356,15 @@ Hỏi "xe đạp" tìm được "xe máy" (gần nghĩa), không tìm "rau muố
 
 <div>
 
-![w:100%](../docs/screenshots/gradio_ui_real.png)
+![w:100%](../docs/screenshots/open_webui_rag_real.png)
 
-*Giao diện Gradio*
-
-</div>
+*Open WebUI — giống ChatGPT*
 
 </div>
 
-**~80 dòng Gradio** = chat UI streaming + chọn model + **trích nguồn từng câu trả lời**
+</div>
+
+**Open WebUI** = chat đầy đủ (lịch sử · đổi model · kéo–thả tài liệu) — cài 1 lệnh Docker, **không cần code**
 
 ---
 

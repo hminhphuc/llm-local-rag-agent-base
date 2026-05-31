@@ -14,7 +14,7 @@
 |---|---|---|
 | 2.0 Step-by-step pipeline | [notebook.ipynb](notebook.ipynb) | 6 bước RAG, mỗi bước 1 cell có output |
 | 2.1 RAG minimal đóng gói | [rag_minimal.py](rag_minimal.py) | Pipeline RAG đầy đủ trong ~200 dòng, có CLI |
-| 2.2 Gradio UI | [app.py](app.py) | Giao diện chat có streaming, chọn model live, hiện trích nguồn |
+| 2.2 Giao diện chat | **Open WebUI** (`docker compose up -d` → :3000) | Chat giống ChatGPT, kéo–thả tài liệu, đổi model — không cần code. *(Nâng cao: tự build UI bằng code → [app.py](app.py))* |
 | 2.3 Dataset mẫu | [data/](data/) | 6 file MD giả lập quy chế an ninh |
 
 ## Pipeline RAG
@@ -73,9 +73,9 @@ python 2_rag/rag_minimal.py --build
 # 2. Hỏi đáp CLI
 python 2_rag/rag_minimal.py --ask "Quy định mật khẩu của đơn vị?"
 
-# 3. Chat UI (Gradio)
-python 2_rag/app.py
-# Mở http://127.0.0.1:7860   (127.0.0.1 và localhost là cùng một máy)
+# 3. Giao diện chat đẹp (giống ChatGPT) → Open WebUI:
+#    docker compose up -d        → mở http://localhost:3000
+#    (Nâng cao: tự build UI bằng code có sẵn — python 2_rag/app.py → http://localhost:7860)
 ```
 
 > 🔁 **Nếu đổi embedding model** (vd `nomic-embed-text` → `bge-m3`): index cũ không còn hợp lệ → **xóa thư mục `chroma_db/`** rồi `--build` lại, nếu không kết quả sẽ sai âm thầm.

@@ -107,14 +107,8 @@ DIAGRAM_INJECTIONS = [
     ),
     (
         r"^# Phần 2 — RAG đi sâu",
-        "screenshots/gradio_ui_real.png",
-        "Hình 12. Gradio UI thật của workshop khi mở lần đầu: sidebar có model dropdown, top-k slider, index status; main là chat với 4 examples",
-        "after",
-    ),
-    (
-        r"^## 2\.5 Đánh giá chất lượng RAG",
-        "screenshots/gradio_ui_chat_real.png",
-        "Hình 13. Gradio UI sau khi user gửi câu hỏi qua browser — câu trả lời render real-time (chụp bằng Playwright trong lúc test)",
+        "screenshots/open_webui_rag_real.png",
+        "Hình 12. Open WebUI — giao diện chat khuyến nghị của workshop (giống ChatGPT, chạy 100% local): chọn model qwen3:1.7b, hỏi đáp tiếng Việt, hỗ trợ kéo–thả tài liệu để RAG",
         "after",
     ),
 ]

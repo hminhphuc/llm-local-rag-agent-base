@@ -16,7 +16,7 @@ Thư mục này chứa file Word của handbook + các asset (diagrams, screensh
 | Thư mục | Nội dung |
 |---|---|
 | `diagrams/` | 8 Mermaid source `.mmd` + 8 PNG render (architecture, RAG pipeline, ReAct loop, MCP...) |
-| `screenshots/` | Terminal output (Ollama/RAG/Agent) vẽ từ output đã chạy bằng `render_real_output.py`; Gradio UI là ảnh chụp (`gradio_ui_real.png`, `gradio_ui_chat_real.png` qua `capture_gradio.py`) |
+| `screenshots/` | Terminal output (Ollama/RAG/Agent) vẽ từ output đã chạy bằng `render_real_output.py`; ảnh giao diện chính `open_webui_rag_real.png` (Open WebUI) chụp qua `capture_openwebui.py` |
 
 ## Cách rebuild khi sửa nội dung
 
@@ -58,12 +58,14 @@ Các ảnh terminal (Ollama/RAG/Agent) được vẽ lại từ **output đã ch
 python docs/render_real_output.py
 ```
 
-Gradio UI (`gradio_ui_real.png`, `gradio_ui_chat_real.png`) là **ảnh chụp giao diện** qua Playwright:
+Ảnh giao diện **Open WebUI** (`open_webui_rag_real.png`) chụp qua Playwright:
 
 ```bash
-# Khởi động app trước: python 2_rag/app.py
-python docs/capture_gradio.py
+# Khởi động trước: docker compose up -d   (Open WebUI ở http://localhost:3000)
+python docs/capture_openwebui.py
 ```
+
+> Tùy chọn: nếu dùng giao diện Gradio tự code (`2_rag/app.py`), chụp bằng `docs/capture_gradio.py` (khởi động `python 2_rag/app.py` trước).
 
 ## Đổi style Word
 

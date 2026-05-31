@@ -17,7 +17,7 @@
   - `python 2_rag/rag_minimal.py --ask "Quy trình xử lý sự cố ATTT?"`
   - `python 3_agent/agent_simple.py --ask "Bây giờ là mấy giờ?"`
 - [ ] (Tùy chọn) Build model custom: sửa `Modelfile.anninh` → `FROM qwen3:1.7b`, `ollama create anninh -f 1_ollama_basics/Modelfile.anninh`.
-- [ ] Mở sẵn & xếp split-screen: **terminal** + **jupyter lab** (3 notebook) + **Gradio** (`python 2_rag/app.py`) + tab Open WebUI. Tránh mất thời gian chuyển cảnh giữa 4 module.
+- [ ] Mở sẵn & xếp split-screen: **terminal** + **jupyter lab** (3 notebook) + **Open WebUI** (`docker compose up -d` → http://localhost:3000). Tránh mất thời gian chuyển cảnh giữa các module.
 - [ ] **USB/LAN dự phòng**: chép sẵn model (qwen3:1.7b + nomic-embed-text) **và** thư mục `chroma_db/` đã build — cứu học viên thiếu setup.
 - [ ] Mở sẵn 5 ảnh fallback trong `docs/screenshots/` (phòng demo chậm).
 
@@ -50,14 +50,14 @@
 - ✅ "Có được forward email công vụ sang gmail?"
 - ✅ "Quy định mật khẩu của đơn vị?"
 
-(Các câu này cũng có sẵn làm nút ví dụ trong Gradio app và notebook.)
+(Các câu này cũng có sẵn làm gợi ý trong notebook và Open WebUI.)
 
 ## 🖥️ Demo: chạy gì LIVE, fallback gì
 | Demo | Live | Fallback nếu chậm/lỗi |
 |---|---|---|
 | Tắt Wi-Fi vẫn chạy | ✅ (đã warm) | Video/ảnh đã quay sẵn |
 | Chat 5 dòng (Module 1) | ✅ | `docs/screenshots/terminal_ollama_chat.png` |
-| RAG query + Gradio | ✅ 1 câu | `terminal_rag_query.png` + `gradio_ui_real.png` |
+| RAG query + Open WebUI | ✅ 1 câu | `terminal_rag_query.png` + `open_webui_rag_real.png` |
 | Agent single-tool | ✅ "mấy giờ?" | `terminal_agent_trace.png` |
 | Agent **multi-tool** | ❌ KHÔNG live | **Chỉ chiếu screenshot** — nói rõ cần qwen3:4b+ |
 
@@ -72,5 +72,5 @@
 | Ollama không phản hồi | `ollama serve` ở terminal khác |
 | Pull/demo chậm | Chuyển sang model đã pull sẵn, đừng đứng chờ |
 | `ModuleNotFoundError` | Học viên quên bật venv → activate lại |
-| Cổng 7860/3000 bận | Đã có tiến trình chạy — dùng luôn, hoặc đóng cái cũ |
+| Cổng 3000 bận | Đã có tiến trình chạy — dùng luôn, hoặc đóng cái cũ |
 | Module 3 "Lỗi truy vấn RAG" | Chưa build index → `python 2_rag/rag_minimal.py --build` |
