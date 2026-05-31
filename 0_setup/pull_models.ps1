@@ -1,4 +1,4 @@
-# Pull models cần thiết cho workshop
+﻿# Pull models cần thiết cho workshop
 # Chạy 1 lần duy nhất, mất ~5-10 phút tùy mạng
 
 $ErrorActionPreference = "Stop"

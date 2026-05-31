@@ -1,4 +1,4 @@
-# Setup script cho workshop - chạy 1 lần duy nhất
+﻿# Setup script cho workshop - chạy 1 lần duy nhất
 # Sử dụng: .\0_setup\setup.ps1
 
 $ErrorActionPreference = "Stop"

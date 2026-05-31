@@ -13,6 +13,8 @@ Mục đích:
 Chạy:
     python 1_ollama_basics/03_openai_compat.py
 """
+import re
+
 from openai import OpenAI
 
 # ===== Trỏ OpenAI SDK về Ollama =====
@@ -40,7 +42,14 @@ response = client.chat.completions.create(
     temperature=0.3,  # Thấp để câu trả lời nhất quán, ít sáng tạo
 )
 
-print(response.choices[0].message.content)
+# Lưu ý: Qwen3 bật "thinking mode" và chèn block <think>...</think> vào câu trả lời.
+# OpenAI SDK KHÔNG có tham số think=False (đó là tham số riêng của Ollama SDK),
+# nên cách phổ quát là lọc bỏ block <think> để output sạch
+# (hoặc thêm "/no_think" vào cuối câu hỏi — cách riêng của Qwen3).
+answer = response.choices[0].message.content
+answer = re.sub(r"<think>.*?</think>\s*", "", answer, flags=re.DOTALL).strip()
+print(answer)
+
 print("\n--- Ví dụ: Chuyển sang OpenAI cloud ---")
 print("Để dùng OpenAI thay vì Ollama local:")
 print("  base_url='https://api.openai.com/v1'")
