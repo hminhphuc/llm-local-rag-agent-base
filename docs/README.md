@@ -16,7 +16,7 @@ Thư mục này chứa file Word của handbook + các asset (diagrams, screensh
 | Thư mục | Nội dung |
 |---|---|
 | `diagrams/` | 8 Mermaid source `.mmd` + 8 PNG render (architecture, RAG pipeline, ReAct loop, MCP...) |
-| `screenshots/` | Terminal output (Ollama/RAG/Agent) vẽ từ output thật bằng `render_real_output.py`; Gradio UI là ảnh chụp thật (`gradio_ui_real.png`, `gradio_ui_chat_real.png` qua `capture_gradio.py`) |
+| `screenshots/` | Terminal output (Ollama/RAG/Agent) vẽ từ output đã chạy bằng `render_real_output.py`; Gradio UI là ảnh chụp (`gradio_ui_real.png`, `gradio_ui_chat_real.png` qua `capture_gradio.py`) |
 
 ## Cách rebuild khi sửa nội dung
 
@@ -52,13 +52,13 @@ Live editor: [mermaid.live](https://mermaid.live)
 
 ## Cách cập nhật terminal screenshot
 
-Các ảnh terminal (Ollama/RAG/Agent) được vẽ lại từ **output thật** bằng `render_real_output.py` (chạy code → chép output vào script → render PNG terminal đẹp):
+Các ảnh terminal (Ollama/RAG/Agent) được vẽ lại từ **output đã chạy** bằng `render_real_output.py` (chạy code → chép output vào script → render PNG terminal đẹp):
 
 ```bash
 python docs/render_real_output.py
 ```
 
-Gradio UI (`gradio_ui_real.png`, `gradio_ui_chat_real.png`) là **ảnh chụp thật** qua Playwright:
+Gradio UI (`gradio_ui_real.png`, `gradio_ui_chat_real.png`) là **ảnh chụp giao diện** qua Playwright:
 
 ```bash
 # Khởi động app trước: python 2_rag/app.py

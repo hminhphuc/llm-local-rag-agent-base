@@ -26,7 +26,7 @@ Cân đối: lý thuyết/demo ~51' vs thực hành ~41' (Module 1-2 cân ~50/50
 
 > **ĐỊNH HƯỚNG ĐỐI TƯỢNG**: bài giảng dùng cho **nhiều đối tượng** (sinh viên CNTT, dân văn phòng, lập trình viên, nhà nghiên cứu...), KHÔNG chỉ riêng ngành an ninh. Mọi ví dụ kỹ thuật (dataset, tool) giữ nguyên nhưng **framing chung chung**: "trợ lý của bạn", "tài liệu của bạn", "công việc của bạn". Trục bảo mật duy nhất xuyên suốt = **"dữ liệu của bạn không rời máy"** — diễn đạt để mọi đối tượng thấy mình trong đó.
 
-## ⚠️ Cấu hình test chuẩn (đã verify 29/05/2026)
+## ⚠️ Cấu hình chuẩn (đã kiểm chứng)
 
 | Thành phần | Giá trị | Lý do |
 |---|---|---|
@@ -37,7 +37,7 @@ Cân đối: lý thuyết/demo ~51' vs thực hành ~41' (Module 1-2 cân ~50/50
 | Câu hỏi RAG | Tự nhiên, tránh mã ngắn | "P1" không retrieve được; "sự cố nghiêm trọng" work |
 | Agent demo | **Single-tool** (1 câu = 1 tool) | 1.7B không chain multi-tool tốt; chain demo dành cho qwen3:4b+ |
 
-> **Lưu ý từ test thật**: tài liệu giảng đi kèm screenshot từ buổi test ngày 29/05/2026. Học viên thấy output **giống hệt** trên máy mình.
+> **Lưu ý**: tài liệu giảng đi kèm screenshot kết quả. Học viên thấy output **tương tự** trên máy mình.
 
 > **Lưu ý quan trọng:** Bài giảng đi kèm [TAI_LIEU_CHI_TIET.md](TAI_LIEU_CHI_TIET.md) — handbook chi tiết cho học viên đọc trong giờ thực hành và sau buổi. Các phần "đi sâu" như embedding lý thuyết, chunking strategies, Modelfile syntax đầy đủ, RAG security in-depth, tool design patterns, MCP, production roadmap... đều nằm trong handbook. Trong giờ giảng chỉ giới thiệu intuition + demo cốt lõi, anh em đọc sâu trong handbook.
 
@@ -420,7 +420,7 @@ Mở browser http://localhost:7860, hỏi 2-3 câu. Để ý phần nguồn appe
 
 [LƯU Ý] Bài 2 là trọng tâm — dành đủ thời gian cho học viên thật sự thấy "AI đọc tài liệu của TÔI". Bài 4 minh chứng rủi ro thực tế cho ai quan tâm bảo mật.
 
-### Câu hỏi mẫu đã test work (29/05/2026)
+### Câu hỏi mẫu (chạy tốt với qwen3:1.7b)
 
 [LƯU Ý] Để học viên ra demo nhanh — không bị stuck với câu hỏi embedding không hiểu.
 
@@ -492,7 +492,7 @@ User: "Thời tiết Hà Nội thế nào, có nên mang ô không?"
 
 > "Đây là phần đáng nhớ nhất. Mỗi dòng là 1 bước thật agent đã làm: UserPrompt → ToolCall → ToolReturn → Text. Đó chính là vòng ReAct các bạn vừa thấy trên bảng — agent tự ráp, không phải tôi code thứ tự."
 
-[LƯU Ý KỸ THUẬT — đã verify 29/05/2026]: **qwen3:1.7b chỉ chain được 1 tool**, không chain multi-tool. Vì vậy demo lớp dùng single-tool (chắc chắn work). Multi-tool chain (cần qwen3:4b+) → **dùng screenshot** trong slide, KHÔNG chạy live (1.7b fail + CPU chậm, đứng chờ vô ích).
+[LƯU Ý KỸ THUẬT]: **qwen3:1.7b chỉ chain được 1 tool**, không chain multi-tool. Vì vậy demo lớp dùng single-tool (chắc chắn work). Multi-tool chain (cần qwen3:4b+) → **dùng screenshot** trong slide, KHÔNG chạy live (1.7b fail + CPU chậm, đứng chờ vô ích).
 
 [LƯU Ý] Pydantic AI: [ai.pydantic.dev](https://ai.pydantic.dev) (team Pydantic/FastAPI).
 

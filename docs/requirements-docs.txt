@@ -7,5 +7,5 @@
 pypandoc-binary>=1.13     # convert Markdown -> Word (kèm sẵn pandoc, không cần cài riêng)
 python-docx>=1.1.0        # chèn cover page, TOC, ảnh, footer vào file .docx
 pillow>=10.0.0            # render ảnh terminal đẹp (docs/render_real_output.py)
-playwright>=1.40.0        # chụp ảnh thật giao diện Gradio (docs/capture_gradio.py)
+playwright>=1.40.0        # chụp ảnh giao diện Gradio (docs/capture_gradio.py)
                           # sau khi cài playwright, chạy thêm: playwright install chromium

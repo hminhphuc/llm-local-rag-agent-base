@@ -207,7 +207,7 @@ print(response.message.content)
 
 <div class="success-box">
 
-**Chạy là có ngay câu trả lời** — không cần CUDA, không cần quản VRAM. Output thật xem ở demo RAG (slide sau) + notebook Module 1.
+**Chạy là có ngay câu trả lời** — không cần CUDA, không cần quản VRAM. Xem thêm ở demo RAG (slide sau) + notebook Module 1.
 
 </div>
 
@@ -342,7 +342,7 @@ Hỏi "xe đạp" tìm được "xe máy" (gần nghĩa), không tìm "rau muố
 
 ---
 
-# Demo RAG — output từ phiên test 29/05
+# Demo RAG
 
 <div class="columns">
 
@@ -350,7 +350,7 @@ Hỏi "xe đạp" tìm được "xe máy" (gần nghĩa), không tìm "rau muố
 
 ![w:100%](../docs/screenshots/terminal_rag_query.png)
 
-*Output terminal (chép từ phiên test thật)*
+*Kết quả trên terminal*
 
 </div>
 
@@ -358,7 +358,7 @@ Hỏi "xe đạp" tìm được "xe máy" (gần nghĩa), không tìm "rau muố
 
 ![w:100%](../docs/screenshots/gradio_ui_real.png)
 
-*Gradio UI (ảnh chụp thật)*
+*Giao diện Gradio*
 
 </div>
 
@@ -422,7 +422,7 @@ Hỏi "xe đạp" tìm được "xe máy" (gần nghĩa), không tìm "rau muố
 
 ---
 
-# Demo Agent — output từ phiên test 29/05
+# Demo Agent
 
 ![w:64%](../docs/screenshots/terminal_agent_trace.png)
 

@@ -86,7 +86,7 @@ DIAGRAM_INJECTIONS = [
         "Hình 8. 4 rủi ro RAG + 4 rủi ro Agent — chiến lược defend khác nhau",
         "after",
     ),
-    # Screenshots minh họa output thật
+    # Screenshots minh họa kết quả
     (
         r"^# Phần 1 — Local LLM với Ollama \(sâu\)",
         "screenshots/terminal_ollama_chat.png",

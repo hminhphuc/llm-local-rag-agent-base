@@ -9,7 +9,7 @@
 > 👤 **Bạn mới với AI/lập trình?** Đọc Phần 0 (thuật ngữ) + 3 câu đầu mỗi mục là đủ. Code/bảng chi tiết bỏ qua không sao.
 > 🔧 **Bạn là dev?** Đọc cả bảng + code.
 
-## Cấu hình chuẩn của workshop (đã test 29/05/2026)
+## Cấu hình chuẩn của workshop
 
 | Thành phần | Giá trị mặc định | Lựa chọn khác |
 |---|---|---|
@@ -451,11 +451,11 @@ NGUYÊN TẮC:
 
 Muốn đo tự động (production): dùng **RAGAS** ([docs.ragas.io](https://docs.ragas.io)) — chấm các chỉ số như *faithfulness* (có bịa không), *answer relevance* (đúng câu hỏi không).
 
-### Bộ câu hỏi đã verify trên workshop dataset (29/05/2026)
+### Bộ câu hỏi mẫu trên workshop dataset
 
-📋 *Ghi chú từ buổi test thật — không phải lý thuyết chung. Dùng để self-check sau khi build xong index.*
+📋 *Dùng để self-check sau khi build xong index — thấy rõ RAG làm tốt gì và giới hạn ở đâu.*
 
-Đây là các câu hỏi đã chạy thực tế trên dataset 6 quy chế an ninh. Dùng để self-check khi học viên build xong index.
+Các câu hỏi dưới đây chạy trên dataset 6 quy chế mẫu — minh họa rõ RAG làm tốt gì và vấp ở đâu.
 
 | # | Câu hỏi | Có work không? | Ghi chú |
 |---|---|---|---|
@@ -640,9 +640,9 @@ Model nhỏ (< 3B) thường yếu ở bước 3 (JSON malformed) và bước 4 
 
 **Quy tắc**: agent dùng tối thiểu **Qwen3:4b** hoặc **Llama3.2:3b** với prompt rõ. Tốt nhất là **Qwen3:8b** trở lên.
 
-### Kết quả test trên workshop (29/05/2026)
+### Kết quả agent trên workshop dataset
 
-Đã test agent với 3 mode trên `qwen3:1.7b`:
+Agent chạy với 3 mode trên `qwen3:1.7b`:
 
 | Test case | Kết quả | Tools gọi | Thời gian |
 |---|---|---|---|

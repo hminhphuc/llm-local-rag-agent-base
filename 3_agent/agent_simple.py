@@ -172,7 +172,7 @@ def run_query(question: str, verbose: bool = True) -> str:
 def demo() -> None:
     """3 ví dụ SINGLE-TOOL để học viên thấy agent tự gọi đúng tool.
 
-    LƯU Ý (đã verify 29/05/2026): qwen3:1.7b — model mặc định workshop —
+    LƯU Ý: qwen3:1.7b — model mặc định workshop —
     gọi TỐT 1 tool mỗi câu, nhưng KHÔNG chain multi-tool ổn định.
     Vì vậy demo mặc định dùng câu single-tool (chắc chắn chạy đẹp).
     Muốn xem multi-tool chain → đặt LLM_MODEL=qwen3:4b (hoặc 8b) rồi

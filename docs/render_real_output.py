@@ -1,9 +1,9 @@
 """
-Render terminal output thật ra PNG dạng terminal đẹp.
+Render output terminal ra PNG dạng terminal đẹp.
 
 Cách dùng:
     python docs/render_real_output.py
-Sinh các file PNG trong docs/screenshots/ từ output thật đã chạy.
+Sinh các file PNG trong docs/screenshots/ từ output đã chạy.
 """
 from pathlib import Path
 
@@ -57,10 +57,10 @@ def render_terminal(title: str, lines: list[tuple[str, tuple[int, int, int]]],
 
 
 # ============================================================
-# Output thật từ RAG query
+# Output từ RAG query
 # ============================================================
 def make_rag_real():
-    # Output thật từ test 2 (29/05/2026), model qwen3:1.7b
+    # Output RAG query, model qwen3:1.7b
     lines = [
         ('$ python 2_rag/rag_minimal.py --ask "Quy trình xử lý sự cố ATTT gồm những bước nào?"', (180, 200, 255)),
         ("", None),
@@ -89,14 +89,14 @@ def make_rag_real():
         ("", None),
         ("[STATUS] Model: qwen3:1.7b · Embedding: nomic-embed-text · ~18s · 100% offline", (130, 130, 140)),
     ]
-    render_terminal("PowerShell - RAG (test 29/05/2026)", lines, "terminal_rag_query.png", width=1400)
+    render_terminal("PowerShell - RAG", lines, "terminal_rag_query.png", width=1400)
 
 
 # ============================================================
-# Output thật từ Ollama chat
+# Output từ Ollama chat
 # ============================================================
 def make_ollama_real():
-    # Output THẬT từ chạy 01_chat.py với qwen3:1.7b + think=False (30/05/2026)
+    # Output từ chạy 01_chat.py với qwen3:1.7b + think=False
     lines = [
         ('$ python 1_ollama_basics/01_chat.py', (180, 200, 255)),
         ("", None),
@@ -114,10 +114,10 @@ def make_ollama_real():
 
 
 # ============================================================
-# Output thật từ Agent
+# Output từ Agent
 # ============================================================
 def make_agent_real():
-    # Output thật từ test 2, qwen3:1.7b với --ask "Bây giờ là mấy giờ?"
+    # Output Agent, qwen3:1.7b với --ask "Bây giờ là mấy giờ?"
     lines = [
         ('$ python 3_agent/agent_simple.py --ask "Bây giờ là mấy giờ?"', (180, 200, 255)),
         ("", None),
@@ -143,7 +143,7 @@ def make_agent_real():
         ("[NOTE] Model 1.7B handle 1-tool tốt. Cho chain nhiều tool dùng qwen3:4b+.", (130, 130, 140)),
         ("[NOTE] Để xem chain multi-tool: chạy --demo (3 query có IP+RAG+log).", (130, 130, 140)),
     ]
-    render_terminal("PowerShell - Agent ReAct (test 29/05/2026)", lines, "terminal_agent_trace.png", width=1400)
+    render_terminal("PowerShell - Agent ReAct", lines, "terminal_agent_trace.png", width=1400)
 
 
 def main():
