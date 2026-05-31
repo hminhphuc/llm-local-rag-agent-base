@@ -2,7 +2,7 @@
 Demo 1.1 — Chat đơn giản với Ollama.
 
 Mục đích:
-    Cho học viên thấy "chỉ 5 dòng code là gọi được LLM local". So với việc
+    Ollama cho phép gọi LLM local chỉ bằng 5 dòng code. So với việc
     tự load transformers, quản VRAM, handle batching... đây là sức mạnh
     của Ollama: ẩn hết phần khó, expose API đơn giản.
 

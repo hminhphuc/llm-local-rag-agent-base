@@ -13,10 +13,10 @@ PIPELINE TỔNG QUAN:
                                                             └──────────┘
 
 VÌ SAO KHÔNG DÙNG LANGCHAIN?
-    Lớp học cần hiểu rõ từng bước. LangChain wrap thành 1 dòng
-    `RetrievalQA.from_chain_type(...)` — chạy được nhưng học viên không
-    hiểu bên trong. Sau khi hiểu pipeline này, đọc LangChain sẽ thấy
-    "chỉ là wrapper của các bước này".
+    Để hiểu rõ từng bước của pipeline. LangChain wrap thành 1 dòng
+    `RetrievalQA.from_chain_type(...)` — chạy được nhưng không rõ cơ chế
+    bên trong. Sau khi hiểu chi tiết từng bước, bạn sẽ thấy rằng
+    LangChain chỉ là wrapper của các bước này.
 
 CÁCH DÙNG:
     python 2_rag/rag_minimal.py --build              # build index lần đầu
@@ -112,7 +112,7 @@ def chunk_text(text: str, size: int = CHUNK_SIZE, overlap: int = CHUNK_OVERLAP) 
         Chunk 2: ký tự [450..950]    ← overlap 50 với chunk 1
         Chunk 3: ký tự [900..1400]   ← overlap 50 với chunk 2
 
-    NÂNG CAO (bài tập cho học viên):
+    NÂNG CAO (để học sâu hơn):
         - Semantic chunking: cắt theo câu (split bằng dấu chấm) hoặc
           theo heading Markdown (# ## ###). Giữ trọn ý tốt hơn.
         - Recursive chunking: thử cắt theo \\n\\n trước, nếu vẫn quá dài
@@ -250,7 +250,7 @@ def generate_answer(question: str, contexts: list[dict]) -> str:
     PROMPT ENGINEERING quan trọng:
         - "Chỉ trả lời dựa vào tài liệu" → giảm hallucination
         - "Nếu không đủ thông tin, nói rõ" → tránh bịa
-        - "Trích nguồn" → audit được, học viên kiểm chứng được
+        - "Trích nguồn" → audit được, người dùng có thể kiểm chứng
     """
     # Ghép các chunk + metadata thành 1 khối context cho LLM
     context_text = "\n\n".join(
@@ -305,7 +305,7 @@ def ask(question: str, show_context: bool = True) -> None:
     print(f"[Retrieve] Đang tìm top-{TOP_K} đoạn liên quan...")
     hits = retrieve(question)
 
-    # In tóm tắt các chunk retrieve được — giúp học viên nhìn thấy
+    # In tóm tắt các chunk retrieve được — làm rõ cơ sở
     # "LLM đang dựa vào gì" để trả lời (debug, audit)
     if show_context:
         print("\n[Đoạn tìm được]")
@@ -343,7 +343,7 @@ def interactive() -> None:
 # CLI entry point
 # ============================================================
 def main() -> None:
-    parser = argparse.ArgumentParser(description="RAG minimal cho workshop")
+    parser = argparse.ArgumentParser(description="RAG minimal — pipeline RAG tự code (CLI)")
     parser.add_argument("--build", action="store_true", help="Build lại index từ data/")
     parser.add_argument("--ask", type=str, help="Hỏi 1 câu rồi thoát")
     parser.add_argument("--interactive", action="store_true", help="Chế độ chat liên tục")
@@ -363,7 +363,7 @@ def main() -> None:
     elif args.interactive:
         interactive()
     else:
-        # Không có flag → chạy demo mặc định cho học viên có cái nhìn nhanh
+        # Không có flag → chạy demo mặc định để minh họa cách dùng
         ask("Quy định mật khẩu của đơn vị như thế nào?")
 
 

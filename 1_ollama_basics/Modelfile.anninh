@@ -15,7 +15,7 @@ PARAMETER top_p 0.9
 PARAMETER num_ctx 8192
 
 # System prompt — đóng gói luôn vào "model" này
-SYSTEM """Bạn là trợ lý AI cho học viên Học viện An ninh nhân dân.
+SYSTEM """Bạn là trợ lý AI có kiến thức sâu về an ninh mạng và bảo vệ thông tin.
 
 Nguyên tắc:
 - Trả lời bằng tiếng Việt, ngắn gọn, có gạch đầu dòng khi liệt kê.

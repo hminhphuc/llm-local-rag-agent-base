@@ -2,7 +2,7 @@
 Demo 1.3 — Dùng OpenAI SDK với Ollama local (API tương thích).
 
 Mục đích:
-    Đây là ĐIỂM BÁN HÀNG LỚN NHẤT của Ollama. Toàn bộ code Python/Node/Go
+    Đây là một trong những điểm mạnh chính của Ollama. Toàn bộ code Python/Node/Go
     viết cho ChatGPT API chỉ cần đổi:
         base_url: "https://api.openai.com/v1"  →  "http://localhost:11434/v1"
     là chạy với local model. Không cần viết lại logic, không cần wrapper.
@@ -41,10 +41,10 @@ response = client.chat.completions.create(
 )
 
 print(response.choices[0].message.content)
-print("\n--- Bài học ---")
-print("Nếu đổi:")
+print("\n--- Ví dụ: Chuyển sang OpenAI cloud ---")
+print("Để dùng OpenAI thay vì Ollama local:")
 print("  base_url='https://api.openai.com/v1'")
 print("  api_key=<OpenAI key thật>")
 print("  model='gpt-4o-mini'")
-print("code này chạy y hệt với OpenAI cloud.")
+print("Code này chạy y hệt với OpenAI cloud.")
 print("→ Migration giữa local và cloud chỉ cần config, không sửa logic.")

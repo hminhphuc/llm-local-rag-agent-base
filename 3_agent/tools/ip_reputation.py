@@ -17,7 +17,7 @@ Cách thay (gợi ý vibe-coding):
 # ============================================================
 # MOCK DATA — chỉ phục vụ demo
 # ============================================================
-# Vài IP test có sẵn để minh họa agent ra quyết định "IP độc hại thì sao".
+# Vài IP mẫu có sẵn để minh họa cách agent xử lý threat intelligence.
 # Các IP này nằm trong dải reserved (RFC5737) → an toàn dùng làm ví dụ.
 _BLACKLIST = {
     "203.0.113.42": {

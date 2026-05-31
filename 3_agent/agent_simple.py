@@ -136,7 +136,7 @@ def run_query(question: str, verbose: bool = True) -> str:
     Args:
         question: câu hỏi của user
         verbose: True thì in các bước ReAct loop (mỗi tool call, mỗi observation)
-                 để học viên thấy "agent đang nghĩ gì"
+                 để hiểu rõ các bước "agent đang nghĩ gì"
 
     Returns:
         Câu trả lời cuối cùng (string)
@@ -151,9 +151,9 @@ def run_query(question: str, verbose: bool = True) -> str:
     result = agent.run_sync(question)
 
     if verbose:
-        # In các message trong vòng ReAct loop — học viên thấy được
+        # In các message trong vòng ReAct loop để trực quan hoá
         # quá trình "LLM gọi tool → nhận kết quả → quyết định bước tiếp".
-        # Đây chính là điểm quan trọng nhất khi giảng về agent.
+        # Điều này giúp hiểu rõ cơ chế hoạt động của agent.
         print("\n[Các bước agent đã thực hiện]")
         for i, msg in enumerate(result.all_messages(), 1):
             kind = type(msg).__name__
@@ -170,9 +170,9 @@ def run_query(question: str, verbose: bool = True) -> str:
 # CÁC CHẾ ĐỘ CHẠY
 # ============================================================
 def demo() -> None:
-    """3 ví dụ SINGLE-TOOL để học viên thấy agent tự gọi đúng tool.
+    """3 ví dụ SINGLE-TOOL để minh hoạ cách agent tự gọi đúng tool.
 
-    LƯU Ý: qwen3:1.7b — model mặc định workshop —
+    LƯU Ý: qwen3:1.7b — model mặc định cho demo đơn giản —
     gọi TỐT 1 tool mỗi câu, nhưng KHÔNG chain multi-tool ổn định.
     Vì vậy demo mặc định dùng câu single-tool (chắc chắn chạy đẹp).
     Muốn xem multi-tool chain → đặt LLM_MODEL=qwen3:4b (hoặc 8b) rồi
@@ -196,7 +196,7 @@ MULTI_TOOL_EXAMPLES = [
 
 
 def interactive() -> None:
-    """Chế độ chat liên tục — học viên tự thử câu hỏi của mình."""
+    """Chế độ chat liên tục — tự do thử các câu hỏi tùy chọn."""
     print(f"=== Agent interactive (model={LLM_MODEL}) ===")
     print("Có sẵn 4 tool: search_internal_docs, check_ip_reputation, read_log_file, get_current_time")
     print("Gõ 'exit' để thoát.\n")
@@ -215,7 +215,7 @@ def interactive() -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Agent demo cho workshop")
+    parser = argparse.ArgumentParser(description="Agent với ReAct loop + tools")
     parser.add_argument("--ask", type=str, help="Hỏi 1 câu rồi thoát")
     parser.add_argument("--interactive", action="store_true", help="Chế độ chat liên tục")
     parser.add_argument("--demo", action="store_true", help="Chạy 3 ví dụ single-tool (mặc định)")
@@ -226,7 +226,7 @@ def main() -> None:
     elif args.interactive:
         interactive()
     else:
-        # Không có flag → chạy demo để học viên thấy ngay tác dụng
+        # Không có flag → chạy demo để minh hoạ tác dụng của agent
         demo()
 
 

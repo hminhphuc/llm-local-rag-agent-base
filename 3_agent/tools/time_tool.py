@@ -3,10 +3,10 @@ Tool: get_current_time
 
 Tool đơn giản nhất — không tham số, không IO, chỉ trả về thời gian hệ thống.
 
-Mục đích sư phạm:
-    Khởi đầu cho học viên hiểu cơ chế "tool call" mà không bị phân tâm
-    bởi logic phức tạp. Sau khi nắm tool này, sang các tool có IO,
-    có sandbox sẽ dễ hơn.
+Thiết kế:
+    Tool này được thiết kế đơn giản nhất để minh hoạ cơ chế "tool call"
+    mà không bị phân tâm bởi logic phức tạp. Cấu trúc này giúp hiểu rõ
+    các tool phức tạp hơn có IO và sandbox sẽ dễ hơn.
 
     Đồng thời, đây là tool minh họa "tại sao LLM cần tool":
         LLM không biết thời gian hiện tại (knowledge cutoff).

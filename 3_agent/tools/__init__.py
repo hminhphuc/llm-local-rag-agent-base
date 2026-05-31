@@ -11,7 +11,7 @@ Mỗi tool là 1 function Python thuần với:
     3. Import vào __init__.py này
     4. Đăng ký trong agent_simple.py bằng agent.tool_plain(my_tool)
 
-Đây là cấu trúc mở: học viên có thể thêm tool VirusTotal, Shodan, Whois...
+Đây là cấu trúc mở: có thể thêm tool VirusTotal, Shodan, Whois...
 mà không cần sửa code agent.
 """
 from .docs import search_internal_docs

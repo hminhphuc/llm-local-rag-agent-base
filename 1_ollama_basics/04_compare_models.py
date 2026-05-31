@@ -2,12 +2,12 @@
 Demo 1.4 — So sánh nhiều model trên cùng 1 prompt.
 
 Mục đích:
-    Học viên thấy rõ "đổi model = đổi 1 string" trong Ollama. Không cần
+    Minh họa "đổi model = đổi 1 string" trong Ollama. Không cần
     download lại framework, không cần restart, không cần convert format.
     Tradeoff size vs chất lượng vs tốc độ là quyết định runtime.
 
-    Đây là điểm quan trọng cho môi trường an ninh: khi yêu cầu thay đổi
-    (model mới hơn, chính sách bảo mật cập nhật), chỉ cần ollama pull X
+    Đây là điểm quan trọng khi vận hành: khi có yêu cầu thay đổi
+    (model mới hơn, yêu cầu cập nhật), chỉ cần ollama pull X
     và đổi tên là xong.
 
 Chạy:
@@ -20,8 +20,8 @@ import ollama
 # Cùng 1 prompt cho tất cả model để so sánh công bằng
 PROMPT = "Giải thích ngắn gọn cho người mới: máy học (machine learning) là gì?"
 
-# Danh sách model muốn so. Thêm/bớt tùy ý — đây chính là cú đổi "1 dòng"
-# mà chúng ta đang minh họa. Học viên có thể uncomment dòng dưới sau khi
+# Danh sách model muốn so. Thêm/bớt tùy ý để so sánh — đây chính là cú đổi "1 dòng".
+# Uncomment dòng dưới sau khi
 # ollama pull gemma3:4b.
 MODELS = [
     "qwen3:1.7b",   # nhẹ nhất, nhanh nhất
