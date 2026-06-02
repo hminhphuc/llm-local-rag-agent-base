@@ -1,405 +1,374 @@
 /* @theme workshop */
-/* Custom Marp theme cho workshop Local LLM + RAG + Agent
- * Phù hợp giáo dục công nghệ:
- * - Sans-serif modern (Inter / Segoe UI)
- * - Navy + blue accent
- * - Code highlighting rõ ràng
- * - Spacing rộng rãi, dễ đọc
+/*
+ * Marp theme — Local LLM · RAG (workshop)
+ * Phong cách học thuật, tối giản, chuyên nghiệp:
+ *   - chữ serif, charcoal trên nền trắng, 1 accent crimson dùng RẤT tiết chế
+ *   - không gradient, không bóng đổ nặng, không emoji, không màu mè
+ *   - bảng kiểu "booktabs" (chỉ kẻ ngang), nhiều khoảng trắng, canh trái
+ *   - mọi slide nội dung top-align để tiêu đề cùng cao độ
  */
 
 @import 'default';
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Code+Pro:wght@400;500&display=swap');
 
 :root {
-    --navy: #0f172a;
-    --primary: #1e40af;
-    --primary-light: #3b82f6;
-    --accent: #06b6d4;
-    --bg: #ffffff;
-    --bg-soft: #f8fafc;
-    --text: #1e293b;
-    --text-muted: #64748b;
-    --border: #e2e8f0;
-    --code-bg: #1e293b;
-    --code-text: #e2e8f0;
-    --success: #16a34a;
-    --warning: #f59e0b;
-    --danger: #dc2626;
+    --ink:    #1a1a1a;   /* tiêu đề & nhấn */
+    --text:   #2b2b2b;   /* body */
+    --muted:  #767066;   /* phụ, chú thích */
+    --accent: #8a1c2b;   /* crimson — accent DUY NHẤT, tiết chế */
+    --bg:     #ffffff;
+    --paper:  #f7f5f0;   /* nền nhạt ấm cho code/zebra rất nhẹ */
+    --rule:   #d9d4ca;   /* hairline */
+    --rule-strong: #b7afa1;
+    --code-ink: #1d1d1d;
 }
 
+/* ============================================================ */
+/* BASE — top-align                                             */
+/* ============================================================ */
 section {
-    font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
     background: var(--bg);
     color: var(--text);
-    font-size: 22px;
-    padding: 56px 70px 64px 70px;
-    line-height: 1.55;
-    letter-spacing: -0.01em;
-    /* Top-align nội dung để mọi slide có nhịp dọc nhất quán (title cùng 1 cao độ).
-       Lead/divider override lại thành center bên dưới. */
-    justify-content: flex-start;
+    font-size: 32px;
+    line-height: 1.35;
+    padding: 40px 72px 36px 72px;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch;
 }
 
-/* Heading hierarchy */
+/* ============================================================ */
+/* TYPOGRAPHY                                                   */
+/* ============================================================ */
 h1 {
-    color: var(--navy);
+    color: var(--ink);
     font-size: 44px;
     font-weight: 700;
-    margin: 0 0 28px 0;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 2px 0 16px 0;
+    padding-bottom: 12px;
+    position: relative;
+}
+
+/* hairline accent mảnh dưới tiêu đề — chữ ký thiết kế nhất quán */
+h1::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 48px;
+    height: 2px;
+    background: var(--accent);
 }
 
 h2 {
-    color: var(--primary);
+    color: var(--ink);
     font-size: 32px;
     font-weight: 600;
-    margin: 0 0 18px 0;
+    margin: 0 0 14px 0;
     line-height: 1.25;
 }
 
 h3 {
-    color: var(--text);
-    font-size: 24px;
+    color: var(--ink);
+    font-size: 22px;
     font-weight: 600;
-    margin: 18px 0 12px 0;
+    margin: 16px 0 8px 0;
 }
 
-p, ul, ol {
-    margin: 12px 0;
-}
+p, ul, ol { margin: 6px 0; }
+ul, ol    { padding-left: 22px; }
+li        { margin: 4px 0; padding-left: 4px; }
 
-ul, ol {
-    padding-left: 28px;
-}
+/* dấu đầu dòng tiết chế: gạch ngang crimson */
+ul > li::marker { content: "—  "; color: var(--accent); font-weight: 700; }
+ol > li::marker { color: var(--accent); font-weight: 700; }
 
-li {
-    margin: 6px 0;
-}
-
-li::marker {
-    color: var(--primary);
-}
-
-strong {
-    color: var(--navy);
-    font-weight: 600;
-}
+strong { color: var(--ink); font-weight: 700; }
 
 em {
-    color: var(--primary);
-    font-style: normal;
-    font-weight: 500;
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 400;
 }
 
-/* Code blocks */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(138, 28, 43, 0.3);
+}
+
+/* ============================================================ */
+/* CODE — nhạt, kiểu phiếu lệnh học thuật (không terminal đen)   */
+/* ============================================================ */
 code {
-    font-family: 'Cascadia Code', 'Consolas', 'Monaco', monospace;
-    background: var(--bg-soft);
-    color: var(--primary);
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 0.92em;
-    border: 1px solid var(--border);
+    font-family: 'Source Code Pro', 'Consolas', monospace;
+    color: var(--accent);
+    font-size: 0.9em;
+    font-weight: 600;
 }
 
 pre {
-    background: var(--code-bg);
-    color: var(--code-text);
-    padding: 22px 26px;
-    border-radius: 10px;
+    background: var(--paper);
+    color: var(--code-ink);
+    padding: 11px 18px;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
     font-size: 18px;
-    line-height: 1.55;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+    line-height: 1.4;
+    margin: 9px 0;
     overflow-x: auto;
-    margin: 18px 0;
+    flex-shrink: 0;
 }
 
 pre code {
     background: transparent;
-    color: var(--code-text);
+    color: var(--code-ink);
     padding: 0;
     border: none;
     font-size: inherit;
 }
 
-/* Syntax colors - thường được Marp xử lý qua highlight.js */
-.hljs-keyword { color: #c084fc; }
-.hljs-string { color: #86efac; }
-.hljs-comment { color: #94a3b8; font-style: italic; }
-.hljs-number { color: #fbbf24; }
-.hljs-function { color: #60a5fa; }
+.hljs-keyword  { color: var(--accent); }
+.hljs-string   { color: #3f6b3f; }
+.hljs-comment  { color: var(--muted); font-style: italic; }
+.hljs-number   { color: #8a5a00; }
+.hljs-built_in,
+.hljs-function { color: #1d1d1d; font-weight: 600; }
 
-/* Tables */
+/* ============================================================ */
+/* TABLES — booktabs: chỉ kẻ ngang, không viền dọc, không box    */
+/* ============================================================ */
 section table,
 table {
     width: 100% !important;
     display: table !important;
     border-collapse: collapse;
-    margin: 18px 0;
-    font-size: 19px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-    border-radius: 8px;
-    overflow: hidden;
+    margin: 14px 0;
+    font-size: 22px;
+    border: none;
+    border-top: 2px solid var(--rule-strong);
+    border-bottom: 2px solid var(--rule-strong);
 }
 
+thead { border-bottom: 1.5px solid var(--rule-strong); }
+
 th {
-    background: var(--primary);
-    color: white;
-    padding: 12px 16px;
+    background: transparent;
+    color: var(--ink);
+    padding: 8px 16px 8px 0;
     text-align: left;
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 700;
+    font-size: 20px;
 }
 
 td {
-    padding: 10px 16px;
-    border-bottom: 1px solid var(--border);
-}
-
-tr:nth-child(even) td {
-    background: var(--bg-soft);
-}
-
-tr:last-child td {
-    border-bottom: none;
-}
-
-/* Blockquote - dùng cho lưu ý quan trọng */
-blockquote {
-    border-left: 4px solid var(--primary-light);
-    background: var(--bg-soft);
-    padding: 14px 22px;
-    margin: 18px 0;
-    border-radius: 0 8px 8px 0;
+    padding: 7px 14px 7px 0;
+    border-bottom: 1px solid var(--rule);
     color: var(--text);
 }
 
-blockquote p {
-    margin: 4px 0;
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: transparent; }
+
+/* ============================================================ */
+/* PULL-QUOTE / CHỐT Ý — viền trái crimson, in nghiêng, không nền */
+/* ============================================================ */
+blockquote {
+    border: none;
+    border-left: 3px solid var(--accent);
+    background: transparent;
+    padding: 4px 0 4px 22px;
+    margin: 10px 0;
+    color: var(--ink);
+    font-size: 30px;
+    font-style: italic;
+    line-height: 1.4;
 }
 
-/* Images */
+blockquote p { margin: 4px 0; }
+blockquote strong { font-style: normal; }
+
+/* ============================================================ */
+/* IMAGES — viền hairline mảnh, không bóng nặng, căn giữa         */
+/* ============================================================ */
 img {
     max-width: 100%;
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+    display: block;
+    margin: 12px auto;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
 }
 
-/* ============================================ */
-/* TITLE slide (lead) - sử dụng class="lead" */
-/* ============================================ */
-section.lead {
-    background: linear-gradient(135deg, #0f172a 0%, #1e40af 60%, #3b82f6 100%);
-    color: white;
-    justify-content: center;
+/* ============================================================ */
+/* IMAGE SHOWCASE — slide chỉ tiêu đề + ảnh chụp lớn            */
+/* ============================================================ */
+section.shot { justify-content: flex-start; }
+
+section.shot h1 {
+    font-size: 33px;
+    margin: 0 0 12px 0;
+    padding-bottom: 10px;
+}
+section.shot h1::after { width: 40px; }
+
+section.shot img {
+    max-width: 100%;
+    max-height: 540px;
+    width: auto;
+    margin: 2px auto 0 auto;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+}
+
+section.shot p {
     text-align: center;
-}
-
-section.lead h1 {
-    color: white;
-    font-size: 60px;
-    margin: 0 0 20px 0;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
-}
-
-section.lead h2 {
-    color: rgba(255, 255, 255, 0.92);
-    font-size: 28px;
-    font-weight: 400;
-    margin: 0 0 36px 0;
-}
-
-section.lead h3 {
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--muted);
     font-size: 20px;
-    font-weight: 400;
+    margin-top: 10px;
 }
+section.shot em { color: var(--muted); font-style: italic; font-weight: 400; }
 
-section.lead p {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 18px;
-}
+/* ============================================================ */
+/* LAYOUT HELPERS                                               */
+/* ============================================================ */
+.center { text-align: center; }
 
-section.lead code {
-    background: rgba(255, 255, 255, 0.15);
-    color: white;
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-section.lead strong {
-    color: white;
-}
-
-/* ============================================ */
-/* SECTION DIVIDER - class="divider" */
-/* ============================================ */
-section.divider {
-    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-    color: white;
-    justify-content: center;
-    text-align: center;
-    padding: 80px;
-}
-
-section.divider h1 {
-    color: white;
-    font-size: 56px;
-    margin: 0 0 20px 0;
-}
-
-section.divider h2 {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 24px;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 30px;
-}
-
-section.divider p {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 22px;
-}
-
-/* ============================================ */
-/* DEMO slide - class="demo" */
-/* ============================================ */
-section.demo {
-    background: var(--code-bg);
-    color: var(--code-text);
-}
-
-section.demo h1, section.demo h2 {
-    color: var(--accent);
-}
-
-section.demo code {
-    background: rgba(255, 255, 255, 0.1);
-    color: #86efac;
-    border-color: rgba(255, 255, 255, 0.15);
-}
-
-section.demo pre {
-    background: #0f172a;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-section.demo strong {
-    color: var(--accent);
-}
-
-/* ============================================ */
-/* Small slide modifiers via classes */
-/* ============================================ */
-
-/* Centered content */
-.center {
-    text-align: center;
-}
-
-/* Two-column layout */
 .columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    gap: 40px;
     align-items: start;
 }
 
 .columns-3 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px;
+    gap: 30px;
+    align-items: start;
 }
 
-/* Highlight box */
-.highlight {
-    background: linear-gradient(135deg, #dbeafe, #e0e7ff);
-    border-left: 4px solid var(--primary);
-    padding: 16px 24px;
-    border-radius: 0 10px 10px 0;
-    margin: 14px 0;
+/* ============================================================ */
+/* TITLE slide (lead) — austere, nền trắng, serif lớn            */
+/* ============================================================ */
+section.lead {
+    justify-content: center !important;
+    align-items: flex-start;
+    padding: 84px 96px;
 }
 
-.warning-box {
-    background: #fef3c7;
-    border-left: 4px solid var(--warning);
-    padding: 16px 24px;
-    border-radius: 0 10px 10px 0;
-}
-
-.success-box {
-    background: #dcfce7;
-    border-left: 4px solid var(--success);
-    padding: 16px 24px;
-    border-radius: 0 10px 10px 0;
-}
-
-.danger-box {
-    background: #fee2e2;
-    border-left: 4px solid var(--danger);
-    padding: 16px 24px;
-    border-radius: 0 10px 10px 0;
-}
-
-/* Big number / stat */
-.big-stat {
-    font-size: 80px;
+section.lead h1 {
+    color: var(--ink);
+    font-size: 64px;
     font-weight: 700;
-    color: var(--primary);
-    line-height: 1;
-    text-align: center;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px 0;
+    padding-bottom: 22px;
 }
 
-.stat-label {
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 18px;
-    margin-top: 6px;
+section.lead h1::after {
+    width: 84px;
+    height: 3px;
+    background: var(--accent);
 }
 
-/* Footer */
-section::after {
-    content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
-    position: absolute;
-    bottom: 18px;
-    right: 30px;
-    font-size: 14px;
-    color: var(--text-muted);
+section.lead h2 {
+    color: var(--text);
+    font-size: 30px;
+    font-weight: 400;
+    font-style: italic;
+    margin: 0 0 40px 0;
 }
 
-section.lead::after,
-section.divider::after {
-    color: rgba(255, 255, 255, 0.6);
+section.lead p {
+    color: var(--muted);
+    font-size: 21px;
+    letter-spacing: 0.02em;
 }
 
-/* Header (footer text) */
+section.lead strong { color: var(--ink); }
+
+/* ============================================================ */
+/* SECTION DIVIDER — charcoal full-bleed, serif trắng            */
+/* ============================================================ */
+section.divider {
+    background: var(--ink);
+    color: #fff;
+    justify-content: center !important;
+    align-items: flex-start;
+    padding: 84px 96px;
+}
+
+section.divider h1 {
+    color: #fff;
+    font-size: 52px;
+    font-weight: 700;
+    margin: 0;
+    padding-bottom: 20px;
+    letter-spacing: -0.015em;
+}
+
+section.divider h1::after {
+    width: 72px;
+    height: 3px;
+    background: var(--accent);
+}
+
+section.divider h2 {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0 0 22px 0;
+}
+
+section.divider p { color: rgba(255, 255, 255, 0.78); }
+
+/* ============================================================ */
+/* HEADER · FOOTER · PAGINATION — nhỏ, xám, kín đáo              */
+/* ============================================================ */
 header {
     position: absolute;
-    top: 18px;
-    left: 30px;
-    font-size: 13px;
-    color: var(--text-muted);
+    top: 26px;
+    left: 84px;
+    font-size: 12px;
+    color: var(--muted);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 500;
-}
-
-section.lead header,
-section.divider header,
-section.demo header {
-    display: none;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-family: 'Source Code Pro', monospace;
 }
 
 footer {
     position: absolute;
-    bottom: 18px;
-    left: 30px;
-    font-size: 13px;
-    color: var(--text-muted);
+    bottom: 24px;
+    left: 84px;
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
 }
 
-section.lead footer,
-section.divider footer {
-    display: none;
+section::after {
+    content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
+    position: absolute;
+    bottom: 24px;
+    right: 40px;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'Source Code Pro', monospace;
 }
+
+section.lead header,
+section.lead footer,
+section.divider header,
+section.divider footer { display: none; }
+
+section.lead::after { display: none; }
+section.divider::after { color: rgba(255, 255, 255, 0.45); }

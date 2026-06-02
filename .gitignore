@@ -23,5 +23,10 @@ Thumbs.db
 
 # Logs
 *.log
-# NHƯNG giữ log mẫu cho demo agent (Module 3)
-!3_agent/sample_logs/*.log
+
+# Tệp tạm / sao lưu / build phụ — không đẩy lên git
+~$*
+*.tmp
+slides/_chk.pdf
+slides/SLIDES - Copy.pptx
+Ollama_Guide*.pptx

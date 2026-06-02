@@ -1,0 +1,53 @@
+DANH BẠ KHẨN CẤP & ĐẦU MỐI AN TOÀN THÔNG TIN
+Công ty Cổ phần Công nghệ ABC (abc.example)
+(Tài liệu nội bộ GIẢ ĐỊNH — dùng để minh hoạ demo RAG. Thông tin liên hệ không có thật.)
+
+Mã văn bản: DB-AN-001/2026
+Phân loại: Nội bộ
+Cập nhật: 01/03/2026
+
+------------------------------------------------------------
+1. TỔNG ĐÀI ỨNG CỨU SỰ CỐ (SOC) — TRỰC 24/7
+------------------------------------------------------------
+- Hotline ATTT: 1900-1080 (nhánh 1 = sự cố khẩn)
+- Email: soc@abc.example
+- Nguyên tắc: sự cố mức P1 (nghiêm trọng) phải GỌI ĐIỆN trực tiếp,
+  KHÔNG chỉ gửi email.
+
+------------------------------------------------------------
+2. ĐẦU MỐI THEO VAI TRÒ
+------------------------------------------------------------
+- Trưởng Tổ An toàn thông tin:
+  Nguyễn Văn An — an.nv@abc.example — 0901-234-567
+  (Quyết định cuối cùng khi xử lý sự cố P1–P2)
+
+- Cán bộ ứng cứu sự cố (CIRT):
+  Trần Thị Bình — binh.tt@abc.example — 0902-345-678
+  (Tiếp nhận cảnh báo, điều phối xử lý ban đầu)
+
+- Phụ trách hạ tầng & sao lưu:
+  Lê Hoàng Cường — cuong.lh@abc.example — 0903-456-789
+  (Khôi phục hệ thống, phục hồi từ backup)
+
+- Cán bộ Bảo vệ dữ liệu cá nhân (DPO):
+  Phạm Thị Dung — dpo@abc.example — 0904-567-890
+  (Sự cố liên quan dữ liệu cá nhân của khách hàng/nhân viên)
+
+- IT Helpdesk (hỗ trợ chung, giờ hành chính):
+  it@abc.example — máy lẻ 1234
+
+------------------------------------------------------------
+3. KHI NÀO GỌI AI
+------------------------------------------------------------
+- Nghi ngờ email lừa đảo (phishing): chuyển tiếp cho soc@abc.example,
+  KHÔNG bấm link, KHÔNG trả lời.
+- Mất/thất lạc laptop hoặc điện thoại công ty: gọi Hotline 1900-1080
+  NGAY trong vòng 1 giờ để khoá tài khoản từ xa.
+- Lộ/nghi lộ mật khẩu: đổi mật khẩu ngay và báo IT Helpdesk.
+- Sự cố ảnh hưởng dữ liệu cá nhân khách hàng: báo đồng thời DPO và SOC.
+
+------------------------------------------------------------
+4. BÁO CÁO BÊN NGOÀI (do Trưởng Tổ ATTT thực hiện)
+------------------------------------------------------------
+- Sự cố P1–P2 liên quan dữ liệu cá nhân: báo cơ quan chức năng
+  trong vòng 72 giờ theo quy định.

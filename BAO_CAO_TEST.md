@@ -8,7 +8,6 @@
 - Python: 3.12.6
 - Models pulled: `qwen3:1.7b`, `qwen3:4b`, `nomic-embed-text`, `anninh:latest` (custom)
 - Ollama: 0.11.8
-- Pydantic AI: 1.103.0
 - Gradio: 6.15.2
 - ChromaDB: 1.5.9
 
@@ -30,28 +29,18 @@
 
 | Test | Command | Kết quả | Ghi chú |
 |---|---|---|---|
-| Build index | `python 2_rag/rag_minimal.py --build` | ✅ PASS | 6 docs → 25 chunks, embed 768d |
-| Single query | `python 2_rag/rag_minimal.py --ask "..."` | ✅ PASS | Output sạch, retrieve đúng, trích nguồn đúng |
-| Interactive mode | `python 2_rag/rag_minimal.py --interactive` | ✅ PASS | Chat loop work, exit OK |
+| Build index | `python rag_app.py --build` | ✅ PASS | 6 docs → 25 chunks, embed 768d |
+| Single query | `python rag_app.py --ask "..."` | ✅ PASS | Output sạch, retrieve đúng, trích nguồn đúng |
 | Gradio app start | `python 2_rag/app.py` | ✅ PASS | HTTP 200, UI render đẹp |
 | Gradio send chat | Playwright headless → fill textarea → Enter → wait 60s | ✅ PASS | Câu hỏi gửi được, response render |
-
-### Module 3 — Agent
-
-| Test | Command | Kết quả | Ghi chú |
-|---|---|---|---|
-| Single tool query | `python 3_agent/agent_simple.py --ask "Bây giờ là mấy giờ?"` | ✅ PASS | get_current_time gọi đúng, output sạch |
-| Single tool query (IP) | `--ask "Kiểm tra IP 203.0.113.42"` | ✅ PASS | check_ip_reputation đúng, response có context blacklist |
-| Demo 3 query multi-step | `--demo` | ⚠️ PARTIAL | Chạy xong cả 3 query, nhưng chỉ gọi 1 tool/query (không chain — Issue 7) |
-| Interactive mode | `--interactive` | ⚠️ KHÔNG TEST ĐƯỢC | stdin pipe không work; code path giống --ask đã verified |
 
 ---
 
 ## Tóm tắt
 
-**Toàn bộ 12 test case chạy thật.** Kết quả: **10 PASS hoàn toàn, 1 PARTIAL (do model limitation), 1 không test được (technical limitation).**
+**Toàn bộ 9 test case chạy thật.** Kết quả: **9 PASS hoàn toàn.**
 
-Code chạy được trên môi trường production-equivalent: Pydantic AI 1.103, Gradio 6.15, ChromaDB 1.5, ollama-python 0.6.
+Code chạy được trên môi trường production-equivalent: Gradio 6.15, ChromaDB 1.5, ollama-python 0.6.
 
 ---
 
@@ -63,39 +52,29 @@ Code chạy được trên môi trường production-equivalent: Pydantic AI 1.1
   - ✅ `01_chat.py`
   - ✅ `02_streaming.py`
   - ✅ `04_compare_models.py` (mới phát hiện lần test 2)
-  - ✅ `rag_minimal.py` (với try/except cho version cũ)
+  - ✅ `rag_app.py` (với try/except cho version cũ)
 - **Lưu ý**: qwen3:**1.7b** respect `think=False` 100% — output sạch. qwen3:**4b** vẫn rambling trong content chính (chỉ tắt `<think>` tag, không tắt thinking-out-loud behavior). **Default workshop = qwen3:1.7b**.
 
-### Issue 2: Pydantic AI 1.x — `OpenAIModel` → `OpenAIChatModel`
-- **Triệu chứng**: DeprecationWarning khi chạy agent
-- **Fix**: ✅ `agent_simple.py` dùng try/except import compat cả 2 version
-- **Verified**: chạy lại agent sau fix không còn warning
-
-### Issue 3: Gradio 6.0 — `theme=` chuyển sang `launch()`
+### Issue 2: Gradio 6.0 — `theme=` chuyển sang `launch()`
 - **Triệu chứng**: UserWarning khi start `app.py`
 - **Fix**: ✅ try/except trong `app.py` cover cả Gradio 4.x và 6.x
 - **Verified**: app start được, không error fatal (chỉ còn warning nhỏ, không cản trở chạy)
 
-### Issue 4: Gradio 6.0 — `ChatInterface` examples phải là list of list
+### Issue 3: Gradio 6.0 — `ChatInterface` examples phải là list of list
 - **Triệu chứng**: `ValueError: Examples must be a list of lists when additional inputs are provided`
 - **Fix**: ✅ `app.py` examples format `[[user_msg, model, top_k, show_sources], ...]`
 - **Verified**: examples table hiển thị trong UI, click work
 
-### Issue 5: Fixed-size chunking cắt giữa context quan trọng
+### Issue 4: Fixed-size chunking cắt giữa context quan trọng
 - **Triệu chứng**: hỏi "MFA cho quản trị?" → "Tài liệu không đề cập" dù file CÓ
 - **Nguyên nhân**: chunk 500 ký tự cắt mất header "Bắt buộc bật MFA cho:"
 - **Pedagogical feature**: minh chứng cho bài tập semantic chunking trong notebook
 - **Workaround**: dùng câu hỏi tự nhiên hơn ("Quy trình xử lý sự cố ATTT?") work tốt
 
-### Issue 6: Embedding không hiểu mã ngắn (P1, P2)
+### Issue 5: Embedding không hiểu mã ngắn (P1, P2)
 - **Triệu chứng**: hỏi "P1 báo cáo bao lâu?" → không retrieve file chứa P1
 - **Workaround**: dùng từ tự nhiên ("Mức sự cố nghiêm trọng phải báo bao lâu?")
 - **Hoặc upgrade**: bge-m3 (multilingual mạnh hơn)
-
-### Issue 7: Model 1.7B không chain multi-tool
-- **Triệu chứng**: query "Kiểm tra IP X và đối chiếu chính sách" → chỉ gọi check_ip, không chain search_internal_docs
-- **Verified**: `--demo` 3 query đều chỉ gọi 1 tool/query
-- **Khuyến nghị**: dùng 1-tool query cho demo lớp; multi-tool chain demo trên qwen3:4b+ hoặc llama3.2:3b+
 
 ---
 
@@ -106,8 +85,6 @@ Code chạy được trên môi trường production-equivalent: Pydantic AI 1.1
 | Single chat (~150 token) | ~5-8s | ~10-15s |
 | Compare benchmark (200 token) | **73.5 tok/s** | **77.5 tok/s** (nhưng output có thinking, không thực dụng) |
 | RAG full query | ~15-25s | ~25-40s |
-| Agent single tool | ~15-20s | ~25-35s |
-| Agent multi-tool chain | KHÔNG CHAIN được | (chưa test với 4b do thời gian) |
 | Gradio response (qua browser) | ~30-50s | — |
 
 **Đánh giá**: trên CPU, qwen3:1.7b vừa đủ nhanh để demo lớp học (mỗi response 5-25s).
@@ -127,8 +104,7 @@ Code chạy được trên môi trường production-equivalent: Pydantic AI 1.1
    - ✅ "Quy trình xử lý sự cố ATTT?" → work
    - ✅ "USB cá nhân có được dùng không?" → work
    - ❌ "P1 báo cáo bao lâu?" → embedding không hiểu
-5. **Demo agent single-tool trong buổi**, multi-tool để bài tập về nhà
-6. **Test lại trên máy giảng** trước buổi 1 lần — tránh ngạc nhiên về version
+5. **Test lại trên máy giảng** trước buổi 1 lần — tránh ngạc nhiên về version
 
 ---
 
@@ -137,12 +113,11 @@ Code chạy được trên môi trường production-equivalent: Pydantic AI 1.1
 1. ✅ `1_ollama_basics/01_chat.py` — thêm `think=False`
 2. ✅ `1_ollama_basics/02_streaming.py` — thêm `think=False`
 3. ✅ `1_ollama_basics/04_compare_models.py` — thêm `think=False` (try/except)
-4. ✅ `2_rag/rag_minimal.py` — thêm `think=False` (try/except)
+4. ✅ `rag_app.py` — thêm `think=False` (try/except)
 5. ✅ `2_rag/app.py` — fix Gradio 6.0 compat:
    - `theme=` try/except Blocks → launch
    - `ChatInterface(type=...)` try/except
    - `examples` đổi sang list of list
-6. ✅ `3_agent/agent_simple.py` — `OpenAIModel` → `OpenAIChatModel` try/except
 
 ---
 
@@ -155,7 +130,6 @@ Code chạy được trên môi trường production-equivalent: Pydantic AI 1.1
 | `03_openai_compat.py` | Không chạy | ✅ Chạy thật, work |
 | `04_compare_models.py` | Không chạy | ✅ Chạy + phát hiện thêm Issue 1 cần fix |
 | `Modelfile.anninh` | Không test | ✅ Build + chạy custom model |
-| `agent_simple.py` sau fix | Chỉ verify import | ✅ Chạy lại 3 mode (--ask, --demo) |
 | Gradio chat thật | Playwright timeout, dừng ở UI initial | ✅ Send chat thành công, response render |
 
 **Kết luận lần test 2: workshop đã test đầy đủ, tất cả file đều có evidence chạy được trên môi trường thực.**

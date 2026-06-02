@@ -16,7 +16,7 @@ Thư mục này chứa file Word của handbook + các asset (diagrams, screensh
 | Thư mục | Nội dung |
 |---|---|
 | `diagrams/` | 8 Mermaid source `.mmd` + 8 PNG render (architecture, RAG pipeline, ReAct loop, MCP...) |
-| `screenshots/` | Terminal output (Ollama/RAG/Agent) vẽ từ output đã chạy bằng `render_real_output.py`; ảnh giao diện chính `open_webui_rag_real.png` (Open WebUI) chụp qua `capture_openwebui.py` |
+| `screenshots/` | Terminal output (Ollama/RAG/Agent) vẽ từ output đã chạy bằng `render_real_output.py`; ảnh Jupyter Lab thật (`jupyter_m1/2/3.png`) chụp qua `capture_jupyter.py`; ảnh Open WebUI (`open_webui_rag_real.png`) chụp qua `capture_openwebui.py` |
 
 ## Cách rebuild khi sửa nội dung
 

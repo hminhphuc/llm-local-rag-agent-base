@@ -1,33 +1,26 @@
 %%{init: {'theme':'base', 'themeVariables': {'fontFamily':'Segoe UI, Arial', 'clusterBkg':'#f8fafc', 'clusterBorder':'#cbd5e1'}}}%%
-flowchart TB
+flowchart LR
     User([Người dùng])
 
-    subgraph Local["Máy local (offline)"]
-        direction TB
-        UI["UI<br/>Open WebUI"]
-        Agent["Agent<br/>Pydantic AI"]
-        RAG["RAG Pipeline<br/>retrieve + generate"]
-        VDB[("Vector DB<br/>ChromaDB")]
-        Ollama["Ollama daemon<br/>LLM + Embedding"]
-        Tools["Tools<br/>tra cứu, đọc file, tính toán..."]
-        Docs[("Tài liệu của bạn<br/>Markdown / PDF")]
+    subgraph Local["Máy local — offline"]
+        direction LR
+        UI["Open WebUI<br/>(giao diện)"]
+        RAG["RAG<br/>retrieve + generate"]
+        Ollama["Ollama<br/>LLM + Embedding"]
+        VDB[("Vector DB<br/>Open WebUI tự quản")]
+        Docs[("Tài liệu của bạn<br/>MD / PDF / Word")]
     end
 
     User <--> UI
-    UI --> Agent
-    Agent --> RAG
-    Agent --> Tools
-    RAG --> VDB
+    UI --> RAG
     RAG --> Ollama
-    Agent --> Ollama
-    Docs -. "build index (1 lần)" .-> VDB
+    RAG --> VDB
+    Docs -. "nạp & index (1 lần)" .-> VDB
 
     classDef userClass fill:#fef3c7,stroke:#92400e,stroke-width:2px
     classDef coreClass fill:#dbeafe,stroke:#1e40af,stroke-width:2px
     classDef storeClass fill:#dcfce7,stroke:#166534,stroke-width:2px
-    classDef toolClass fill:#fce7f3,stroke:#9d174d,stroke-width:2px
 
     class User userClass
-    class UI,Agent,RAG,Ollama coreClass
+    class UI,RAG,Ollama coreClass
     class VDB,Docs storeClass
-    class Tools toolClass

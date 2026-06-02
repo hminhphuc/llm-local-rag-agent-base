@@ -1,19 +1,10 @@
-# Core
+# Core — Module 1 (Local LLM qua Ollama)
 ollama>=0.4.0
-openai>=1.50.0
+openai>=1.50.0          # demo API tương thích OpenAI (1_ollama_basics/03_openai_compat.py)
 python-dotenv>=1.0.0
 
-# RAG
-chromadb>=0.5.0
-pypdf>=4.0.0
-
-# Agent
-pydantic-ai>=0.0.20
-pydantic>=2.0.0
-
-# UI (giao diện chính = Open WebUI qua docker-compose.yml)
-gradio>=4.40.0          # tùy chọn — chỉ cần cho UI nâng cao 2_rag/app.py
-
-# Notebook
+# Notebook (Module 1 chạy từng cell)
 jupyterlab>=4.0.0
 ipykernel>=6.0.0
+
+# Module 2 (RAG) dùng GIAO DIỆN Open WebUI qua docker-compose.yml — KHÔNG cần thư viện Python.

@@ -62,7 +62,7 @@ def render_terminal(title: str, lines: list[tuple[str, tuple[int, int, int]]],
 def make_rag_real():
     # Output RAG query, model qwen3:1.7b
     lines = [
-        ('$ python 2_rag/rag_minimal.py --ask "Quy trình xử lý sự cố ATTT gồm những bước nào?"', (180, 200, 255)),
+        ('$ python rag_app.py --ask "Quy trình xử lý sự cố ATTT gồm những bước nào?"', (180, 200, 255)),
         ("", None),
         ("[Câu hỏi] Quy trình xử lý sự cố ATTT gồm những bước nào?", (255, 255, 200)),
         ("[Retrieve] Đang tìm top-3 đoạn liên quan...", (180, 200, 255)),
@@ -113,44 +113,10 @@ def make_ollama_real():
     render_terminal("PowerShell - Ollama chat (qwen3:1.7b)", lines, "terminal_ollama_chat.png", width=1400)
 
 
-# ============================================================
-# Output từ Agent
-# ============================================================
-def make_agent_real():
-    # Output Agent, qwen3:1.7b với --ask "Bây giờ là mấy giờ?"
-    lines = [
-        ('$ python 3_agent/agent_simple.py --ask "Bây giờ là mấy giờ?"', (180, 200, 255)),
-        ("", None),
-        ("=" * 75, (100, 100, 110)),
-        ("[User] Bây giờ là mấy giờ?", (255, 255, 200)),
-        ("=" * 75, (100, 100, 110)),
-        ("", None),
-        ("[Các bước agent đã thực hiện]", (200, 220, 255)),
-        ("", None),
-        ("  1. [ModelRequest]  SystemPromptPart + UserPromptPart", (200, 200, 200)),
-        ("  2. [ModelResponse] ThinkingPart: 'user asking time in Vietnamese,", (255, 180, 100)),
-        ("                     need get_current_time'", (255, 180, 100)),
-        ("                     ToolCallPart: get_current_time()", (255, 180, 100)),
-        ("  3. [ModelRequest]  ToolReturnPart:", (180, 220, 180)),
-        ("                     '2026-05-29 09:40:15, Thứ Sáu'", (180, 220, 180)),
-        ("  4. [ModelResponse] TextPart: <final answer>", (160, 220, 160)),
-        ("", None),
-        ("[Câu trả lời cuối]", (180, 200, 255)),
-        ("", None),
-        ("Thời gian hiện tại là **2026-05-29 09:40:15, Thứ Sáu**.", (160, 220, 160)),
-        ("(Kết quả được trả về từ công cụ `get_current_time`.)", (160, 220, 160)),
-        ("", None),
-        ("[NOTE] Model 1.7B handle 1-tool tốt. Cho chain nhiều tool dùng qwen3:4b+.", (130, 130, 140)),
-        ("[NOTE] Để xem chain multi-tool: chạy --demo (3 query có IP+RAG+log).", (130, 130, 140)),
-    ]
-    render_terminal("PowerShell - Agent ReAct", lines, "terminal_agent_trace.png", width=1400)
-
-
 def main():
     print(f"Rendering real screenshots -> {OUT_DIR}")
     make_rag_real()
     make_ollama_real()
-    make_agent_real()
     print("Done.")
 
 

@@ -1,0 +1,17 @@
+Mã tài sản,Tên thiết bị/Hệ thống,Loại,Người quản lý,Phân loại dữ liệu,Vị trí,Ngày cấp
+TS-LAP-001,Laptop Dell Latitude 5440,Máy tính xách tay,Nguyễn Văn An,Nội bộ,Phòng ATTT - Tầng 5,2026-01-10
+TS-LAP-002,Laptop ThinkPad T14,Máy tính xách tay,Trần Thị Bình,Nội bộ,Phòng ATTT - Tầng 5,2026-01-10
+TS-SRV-001,Máy chủ ứng dụng nội bộ APP-01,Máy chủ,Lê Hoàng Cường,Mật,Trung tâm dữ liệu - Tầng hầm,2025-06-15
+TS-SRV-002,Máy chủ cơ sở dữ liệu DB-01,Máy chủ,Lê Hoàng Cường,Mật,Trung tâm dữ liệu - Tầng hầm,2025-06-15
+TS-SRV-003,Máy chủ sao lưu BACKUP-01,Máy chủ,Lê Hoàng Cường,Mật,Trung tâm dữ liệu - Tầng hầm,2025-07-01
+TS-NET-001,Tường lửa FortiGate 100F,Thiết bị mạng,Lê Hoàng Cường,Nội bộ,Trung tâm dữ liệu - Tầng hầm,2025-05-20
+TS-NET-002,Switch lõi Cisco Catalyst,Thiết bị mạng,Lê Hoàng Cường,Nội bộ,Trung tâm dữ liệu - Tầng hầm,2025-05-20
+TS-WS-010,Máy trạm kế toán PC-KT-01,Máy trạm,Phòng Kế toán,Mật,Phòng Kế toán - Tầng 3,2025-09-12
+TS-WS-011,Máy trạm nhân sự PC-HR-01,Máy trạm,Phòng Nhân sự,Mật,Phòng Nhân sự - Tầng 3,2025-09-12
+TS-MOB-001,Điện thoại iPhone công vụ,Điện thoại,Nguyễn Văn An,Nội bộ,Cấp cá nhân,2026-02-01
+TS-APP-001,Hệ thống quản lý khách hàng (CRM),Phần mềm,Phòng Kinh doanh,Mật,Đám mây riêng nội bộ,2025-04-01
+TS-APP-002,Cổng thông tin nội bộ (Intranet),Phần mềm,Phòng CNTT,Nội bộ,Máy chủ APP-01,2025-04-01
+TS-APP-003,Trợ lý AI nội bộ (Open WebUI + Ollama),Phần mềm,Tổ ATTT,Nội bộ,Máy chủ AI-01,2026-03-01
+TS-STO-001,Tủ lưu trữ tài liệu Mật,Lưu trữ vật lý,Văn thư,Mật,Kho lưu trữ - Tầng 2,2024-01-01
+TS-PRN-001,Máy in đa năng tầng 3,Thiết bị ngoại vi,IT Helpdesk,Công khai,Khu in ấn - Tầng 3,2025-03-15
+TS-LAP-003,Laptop MacBook Pro 14,Máy tính xách tay,Phạm Thị Dung,Nội bộ,Phòng Pháp chế - Tầng 4,2026-01-20

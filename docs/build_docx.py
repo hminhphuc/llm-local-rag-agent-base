@@ -96,19 +96,13 @@ DIAGRAM_INJECTIONS = [
     (
         r"^## 2\.4 Prompt engineering cho RAG",
         "screenshots/terminal_rag_query.png",
-        "Hình 10. Output thực tế của python rag_minimal.py: retrieve top-3 + sinh câu trả lời có trích nguồn",
-        "after",
-    ),
-    (
-        r"^## 3\.2 Tool calling mechanics",
-        "screenshots/terminal_agent_trace.png",
-        "Hình 11. Trace ReAct loop của agent: từng bước tool call → observation → final answer",
+        "Hình 10. Output thực tế của python rag_app.py: retrieve top-3 + sinh câu trả lời có trích nguồn",
         "after",
     ),
     (
         r"^# Phần 2 — RAG đi sâu",
         "screenshots/open_webui_rag_real.png",
-        "Hình 12. Open WebUI — giao diện chat khuyến nghị của workshop (giống ChatGPT, chạy 100% local): chọn model qwen3:1.7b, hỏi đáp tiếng Việt, hỗ trợ kéo–thả tài liệu để RAG",
+        "Hình 11. Open WebUI — giao diện chat khuyến nghị của workshop (giống ChatGPT, chạy 100% local): chọn model qwen3:1.7b, hỏi đáp tiếng Việt, hỗ trợ kéo–thả tài liệu để RAG",
         "after",
     ),
 ]

@@ -2,499 +2,566 @@
 marp: true
 theme: workshop
 paginate: true
-header: 'Workshop: Local LLM · RAG · Agent'
+header: 'Local LLM · RAG'
 footer: '© 2026 · 100% offline'
 size: 16:9
 ---
 
 <!-- _class: lead -->
 
-# Local LLM · RAG · Agent
+# Local LLM · RAG
 
-## Trợ lý AI chạy 100% trên máy của bạn
+## Tự xây trợ lý AI đọc tài liệu của bạn — chạy 100% trên máy
 
-<br>
-
-**2 giờ · 3 module · Hands-on · Không byte nào rời máy**
+**Dữ liệu của bạn không rời máy**  ·  PGS.TS. Lê Anh Cường
 
 ---
 
-# Vì sao chạy LLM trên máy mình?
+# Mục tiêu buổi học
 
-<div class="columns-3">
+- **HIỂU** RAG và **6 thành phần** của hệ RAG local
+- **XÂY** RAG local trên tài liệu của bạn — không cần code
+- **CHỌN** model LLM phù hợp, chạy offline bằng **Ollama**
 
-<div>
-
-### 🔒 Riêng tư
-Dữ liệu **không rời máy** — hợp đồng, mã nguồn, hồ sơ, bài tập
-
-</div>
-
-<div>
-
-### 🌐 Độc lập
-Pull về xong → **offline vẫn chạy**, không phụ thuộc mạng/nhà cung cấp
-
-</div>
-
-<div>
-
-### 💰 Miễn phí
-Không token, không giới hạn, không hoá đơn theo lượt gọi
-
-</div>
-
-</div>
-
-<br>
-
-<div class="highlight">
-
-**Trục xuyên suốt buổi học**: mỗi lần bạn dán nội dung vào ChatGPT, nó rời khỏi máy bạn lên server công ty khác. Local LLM cho bạn đúng năng lực đó — **không gửi đi đâu cả**.
-
-</div>
+> Thước đo: hỏi 1 câu về tài liệu → trả lời **đúng** + **trích nguồn**.
 
 ---
 
-# Bạn thấy mình trong đó chứ?
+# Rủi ro khi gửi dữ liệu ra ngoài
 
-<div class="columns">
+- **Rò rỉ:** Samsung (5/2023) cấm ChatGPT nội bộ sau lộ mã nguồn
+- **Điều khoản:** *"data may be used to improve our models"*
+- **Chi phí:** trả **theo token**, phụ thuộc mạng & nhà cung cấp
 
-<div>
+> Gửi prompt = gửi **dữ liệu** ra ngoài tổ chức.
 
-- **Văn phòng** → hợp đồng, bảng lương, danh sách khách hàng
-- **Lập trình viên** → mã nguồn nội bộ, API key
-- **Nhà nghiên cứu** → dữ liệu, bản thảo chưa công bố
-
-</div>
-
-<div>
-
-- **Sinh viên** → đồ án, bài tập của mình
-- **Y tế / pháp lý** → hồ sơ bệnh án, hồ sơ thân chủ
-- **Tổ chức** → tài liệu nội bộ nhạy cảm
-
-</div>
-
-</div>
-
-<br>
-
-<div class="success-box">
-
-**Bằng chứng vật lý** (demo giữa buổi): tắt Wi-Fi → AI **vẫn trả lời**. Không mạng, không cloud, không gửi đi đâu.
-
-</div>
+![w:620](../docs/diagrams/08_security_risks.png)
 
 ---
 
-# Roadmap — 3 module, trọng số rõ ràng
+# Giải pháp: LLM local
 
-| Phần | Vai trò | Thời lượng |
+Dữ liệu **KHÔNG** rời máy.
+
+- **LLM local (Ollama)** là nền tảng → **RAG** lên trên
+
+| Nhóm | Nhu cầu |
+|---|---|
+| **Văn phòng** | Tra quy chế nội bộ |
+| **Lập trình viên** | Trợ lý code offline |
+| **Tổ chức/DN** | Chatbot không rò rỉ |
+| **Y tế** | Hồ sơ bệnh nhân bảo mật |
+
+---
+
+# Local vs Cloud
+
+| Tiêu chí | Local | Cloud / API |
 |---|---|---|
-| **1. Local LLM với Ollama** | ⭐ **Trục chính** | **44'** (giảng + thực hành kỹ) |
-| 2. RAG cho tài liệu của bạn | Thứ yếu, quan trọng | 34' (lý thuyết gọn + thực hành) |
-| 3. Agent | Giới thiệu — về tự khám phá | 18' (chỉ demo) |
+| **Bảo mật** | Ở lại máy | Gửi ra ngoài |
+| **Chi phí** | Trả 1 lần | Theo token |
+| **Chất lượng** | Model nhẹ | Mô hình mạnh |
+| **Độ trễ** | Chậm trên CPU | Nhanh (GPU lớn) |
+| **Vận hành** | Tự bảo trì | Bấm là dùng |
 
-<br>
+> Local thắng **bảo mật & chi phí**, đổi lấy **chất lượng & tốc độ**.
 
-> *Local LLM (chạy được) → RAG (cho LLM đọc tài liệu của bạn) → Agent (cho LLM biết hành động)*
+---
+
+# Lộ trình buổi học
+
+1. **Nền tảng:** cài & chạy LLM local — Ollama + Docker
+2. **RAG — trọng tâm:** 6 thành phần → nạp tài liệu → **trích nguồn**
+
+Cả 2 chặng đều có **thực hành làm theo**.
+
+![w:760](../docs/diagrams/01_overall_architecture.png)
 
 ---
 
 <!-- _class: divider -->
 
-## Phần 1 / 3 · Trục chính
-
-# Local LLM với Ollama
+# RAG — Trục chính
 
 ---
 
-# Ollama = "Docker cho LLM"
+# RAG là gì
 
-<div class="columns">
+**Tra** tài liệu trước, **trả lời** sau.
 
-<div>
+- **LLM** không có tài liệu của bạn
+- Hỏi thẳng → **bịa** (hallucination)
+- Dán cả tập → **vượt** context, tốn token
+- Ẩn dụ: **đóng sách** (LLM) → **mở sách** (RAG)
 
-### Docker
-```bash
-docker pull nginx
-docker run nginx
-```
-
-### Ollama
-```bash
-ollama pull qwen3:1.7b
-ollama run qwen3:1.7b
-```
-
-</div>
-
-<div>
-
-### Ẩn hết phần khó:
-- ❌ Không cần biết CUDA
-- ❌ Không cần config VRAM
-- ❌ Không cần quản batching
-- ❌ Không cần compile
-
-### Chính thức:
-[ollama.com](https://ollama.com) · 90K+ ⭐
-
-</div>
-
-</div>
+> RAG = Retrieval + Augmented + Generation
 
 ---
 
-# 5 ưu điểm nhớ ngay
+# Kiến trúc RAG: 6 bước
 
-<div class="columns">
+![w:760](../docs/diagrams/02_rag_pipeline.png)
 
-<div>
+**Offline** (1 lần): Load → Chunk → Embed → Store
+**Online** (mỗi câu hỏi): Retrieve → Generate
 
-### 1️⃣ Cài 1 lệnh
-```bash
+> 4 bước đầu làm 1 lần · 2 bước cuối chạy mỗi câu hỏi.
+
+---
+
+# Embedding: chữ thành nghĩa
+
+![w:680](../docs/diagrams/04_embedding_space.png)
+
+- Mỗi đoạn → vector **~768 chiều**
+- Nghĩa gần → vector **gần** (cosine nhỏ)
+- Hơn từ khoá: "mã đăng nhập" ≈ "mật khẩu" vẫn **khớp**
+- Model **`nomic-embed-text`**, tính local
+
+---
+
+# Chunking, Vector DB, Top-k
+
+- **Chunk** ~300–700 ký tự, overlap 10–20%
+- **Vector DB**: vector + text + metadata, HNSW
+- **Top-k**: lấy `k` đoạn gần nhất
+
+| Thông số | Giá trị |
+|---|---|
+| Chunk Size | 500 |
+| Chunk Overlap | 50 |
+| Top K | 3 |
+
+---
+
+# Giới hạn & Đánh giá RAG
+
+**RAG vẫn có thể sai khi:**
+- Retrieve **sai đoạn** → "rác vào, rác ra"
+- Câu hỏi **ngoài** tài liệu → cần System Prompt chặn
+- **Chunking / embedding** kém → cả hệ kém theo
+
+**Đánh giá chất lượng:**
+- **Faithfulness** — câu trả lời bám nguồn, có trích dẫn
+- Đọc **Sources** — nguồn không khớp = tín hiệu sai
+- Khung bài bản: **RAGAS**
+
+> Đo lường được → cải tiến được.
+
+---
+
+<!-- _class: divider -->
+
+# Công cụ & chạy LLM local
+
+---
+
+# Ollama là gì
+
+> Phần mềm mã nguồn mở, chạy LLM ngay trên máy — "Docker cho LLM".
+
+- **Phổ biến**: kho model cộng đồng, nhiều model **hàng chục–trăm triệu lượt tải**
+- **Chuyên nghiệp**: tự tối ưu GPU/CPU · API **tương thích OpenAI** → ghép app dễ
+- **Bảo mật**: chạy **100% offline**
+- **Đơn giản**: cài 1 lệnh, chạy/đổi model 1 dòng
+- **Server**: chạy nền tại **`localhost:11434`** → Open WebUI nối vào
+
+---
+
+# Cài đặt Ollama
+
+**Dễ nhất — tải từ web:** mở [ollama.com/download](https://ollama.com/download) → chọn hệ điều hành → tải về → chạy file cài đặt.
+
+**Hoặc dòng lệnh — Windows** (PowerShell):
+```powershell
 winget install Ollama.Ollama
 ```
 
-### 2️⃣ Tự tối ưu phần cứng
-Auto detect GPU/CPU, không cần config
-
-### 3️⃣ Đổi model 1 dòng
-```python
-ollama.chat(model="qwen3:1.7b")
-# → ollama.chat(model="qwen3:4b")
+**macOS / Linux:**
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
 ```
 
-</div>
-
-<div>
-
-### 4️⃣ API tương thích OpenAI
-```python
-client = OpenAI(
-  base_url="http://localhost:11434/v1",
-  api_key="ollama"
-)
-```
-→ **Không khoá cứng vào 1 nhà cung cấp**
-
-### 5️⃣ Offline 100%
-Pull về xong → **tắt mạng vẫn chạy**
-
-</div>
-
-</div>
+Kiểm tra: `ollama --version` · Yêu cầu **RAM ≥ 8GB**.
 
 ---
 
-# Demo: 5 dòng code = LLM chạy local
+# Lấy model
 
-```python
-import ollama
+Mở **[ollama.com/library](https://ollama.com/library)** → chọn model theo RAM máy:
 
-response = ollama.chat(
-    model="qwen3:1.7b",
-    messages=[
-        {"role": "system", "content": "Bạn là trợ lý hữu ích, trả lời ngắn gọn."},
-        {"role": "user", "content": "Giải thích RAG trong 3 câu."},
-    ],
-    think=False,   # tắt thinking mode của Qwen3 → output sạch
-)
-print(response.message.content)
+| RAM | Model | Cỡ |
+|---|---|---|
+| **8GB** | qwen3:1.7b | ~1.4GB |
+| **16GB** | qwen3:4b | ~2.5GB |
+| **GPU lớn** | qwen3:8b | ~5GB |
+
+Tải về (kèm embedding cho RAG):
+```bash
+ollama pull qwen3:1.7b
+ollama pull nomic-embed-text
 ```
 
-<div class="success-box">
-
-**Chạy là có ngay câu trả lời** — không cần CUDA, không cần quản VRAM. Xem thêm ở demo RAG (slide sau) + notebook Module 1.
-
-</div>
+Số **"b"** ≈ độ thông minh ≈ độ nặng · **Qwen** hợp tiếng Việt. → Slide sau: đọc bảng **tag**.
 
 ---
 
-# Chọn model theo MÁY của bạn
+# Chọn tag
 
-| RAM máy | Model gợi ý | Size | Tốc độ CPU |
-|---|---|---|---|
-| 8 GB | **qwen3:1.7b** ⭐ | 1.4 GB | **73 tok/s** |
-| 16 GB | qwen3:4b | 2.5 GB | ~77 tok/s |
-| 16 GB+ | llama3.2:3b | 2.0 GB | ~60 tok/s |
-| GPU / 32 GB | qwen3:8b | 5.2 GB | ~40 tok/s |
+Bấm vào model để xem bảng **tag** — chọn theo:
 
-<br>
-
-<div class="highlight">
-
-**Quantization** (Q4): nén model xuống 4-bit → nhẹ 4× mà giữ ~97% chất lượng. Đó là lý do model 7 tỷ tham số chạy được trên laptop 8 GB. **Đổi model = đổi 1 string.**
-
-</div>
-
----
-
-# Bản đồ thuật ngữ (cho người mới)
-
-| Thuật ngữ | Hiểu nôm na |
+| Mục | Ý nghĩa |
 |---|---|
-| **Model** | "Bộ não" AI đã huấn luyện sẵn (file vài GB) |
-| **Token** | Mẩu chữ (~¾ từ). LLM sinh từng token một |
-| **Tham số (1.7B, 4B...)** | Số "nơ-ron" — càng nhiều càng thông minh & nặng |
-| **Embedding** | Biến chữ thành dãy số để máy so sánh nghĩa |
-| **Temperature** | 0 = chắc chắn, nhất quán · 1 = sáng tạo, ngẫu nhiên |
-| **Context window** | "Trí nhớ ngắn hạn" — số token model đọc được 1 lần |
+| Size | nhỏ hơn RAM (8GB → ~5GB) |
+| Q4 / Q8 | mức nén · Q4 nhẹ mà vẫn tốt |
+| Context | cửa sổ nhớ 8K–256K · lớn = tốn RAM |
+| :1.7b / :4b | số tham số ≈ độ nặng |
 
-> Không cần thuộc lòng — tra lại bảng này khi gặp trong code.
+> Quy tắc vàng: chọn bản nhỏ hơn RAM, ưu tiên Q4.
 
 ---
 
-# 🛠️ Thực hành Phần 1 · 22 phút
+<!-- _class: shot -->
 
-### Thành quả: *"LLM chạy offline trên máy TÔI"*
+# Thư viện model Ollama
 
-<br>
-
-1. `ollama --version` + `ollama list` — kiểm tra cài
-2. `ollama run qwen3:1.7b` → hỏi 1 câu **chủ đề của bạn**
-3. Notebook Python 5 dòng → đổi system prompt thành persona riêng
-4. **Sửa Modelfile** → build model "của bạn" (tính cách + trả lời ngắn)
-5. (Thêm) chỉnh `temperature` thấp ↔ cao, quan sát khác biệt
+![](../docs/screenshots/ollama_01_library.png)
 
 ---
 
-<!-- _class: divider -->
+<!-- _class: shot -->
 
-## Phần 2 / 3 · Thứ yếu nhưng quan trọng
+# Model qwen3 — chọn cỡ theo RAM
 
-# RAG — cho LLM đọc tài liệu của bạn
-
----
-
-# Bài toán: AI không biết tài liệu của BẠN
-
-<div class="warning-box">
-
-Bạn có một đống tài liệu của riêng mình — sổ tay, quy trình, ghi chú, giáo trình.
-**ChatGPT không biết gì về chúng.** Và bạn cũng không muốn upload hết lên cloud.
-
-</div>
-
-<br>
-
-<div class="columns">
-
-<div>
-
-### ❌ LLM thuần
-"Hỏi một người thông minh **nhưng không biết** tài liệu của bạn"
-→ trả lời chung chung / bịa
-
-</div>
-
-<div>
-
-### ✅ LLM + RAG
-"Cho người đó **tra tài liệu của bạn trước** khi trả lời"
-→ bám sát tài liệu thật, **trích nguồn**
-
-</div>
-
-</div>
+![](../docs/screenshots/ollama_02_qwen3.png)
 
 ---
 
-# RAG pipeline — 5 bước
+# Chạy & test LLM local
 
-![bg right:55% w:95%](../docs/diagrams/02_rag_pipeline.png)
+Test nhanh 1 câu:
+```bash
+ollama run qwen3:1.7b "Giải thích RAG trong 3 câu"
+```
 
-**Offline** (build 1 lần):
+Hoặc mở phiên chat: `ollama run qwen3:1.7b` (dấu nhắc `>>>`, thoát `/bye`).
 
-1. **Load** — đọc tài liệu
-2. **Chunk** — cắt ~500 ký tự
-3. **Embed** — text → vector
-4. **Store** — lưu vector DB
-
-**Online** (mỗi câu hỏi):
-
-5. **Retrieve** — tìm top-k đoạn
-6. **Generate** — LLM trả lời + nguồn
+- Lần đầu **tự tải** model nếu chưa có → trả lời ngay
+- **CPU** im 15–25s là bình thường (đang nạp) → sau đó **stream**
+- Gửi **nhiều dòng**: bọc trong `""" … """`
+- → Kết quả thật như **slide sau**
 
 ---
 
-# Embedding — bước "ma thuật"
+<!-- _class: shot -->
 
-![bg right:50% w:95%](../docs/diagrams/04_embedding_space.png)
+# Kết quả: LLM trả lời offline
 
-Model ánh xạ **text → vector** ~768 chiều
-
-<br>
-
-**Quy tắc**:
-text có nghĩa **gần nhau**
-→ vector **gần nhau**
-
-<br>
-
-<div class="highlight">
-
-Hỏi "xe đạp" tìm được "xe máy" (gần nghĩa), không tìm "rau muống". **Keyword search sẽ trượt — embedding thì hiểu nghĩa.**
-
-</div>
+![](../docs/screenshots/terminal_ollama_chat.png)
 
 ---
 
-# Demo RAG
+# Lệnh Ollama thường dùng
 
-<div class="columns">
+| Lệnh | Tác dụng |
+|---|---|
+| `ollama run qwen3` | Chạy / chat với model |
+| `ollama pull qwen3` | Tải model về máy |
+| `ollama list` | Liệt kê model đã tải |
+| `ollama ps` | Xem model đang chạy |
+| `ollama stop qwen3` | Dừng — giải phóng RAM |
+| `ollama rm qwen3` | Xóa — giải phóng ổ đĩa |
 
-<div>
-
-![w:100%](../docs/screenshots/terminal_rag_query.png)
-
-*Kết quả trên terminal*
-
-</div>
-
-<div>
-
-![w:100%](../docs/screenshots/open_webui_rag_real.png)
-
-*Open WebUI — giống ChatGPT*
-
-</div>
-
-</div>
-
-**Open WebUI** = chat đầy đủ (lịch sử · đổi model · kéo–thả tài liệu) — cài 1 lệnh Docker, **không cần code**
-
----
-
-# 🛠️ Thực hành Phần 2 · 19 phút
-
-### Thành quả: *"AI đọc tài liệu CỦA TÔI"*
-
-<br>
-
-1. Chạy notebook RAG trên dataset mẫu → thấy trích nguồn
-2. ⭐ **Thả 1-2 file của riêng bạn** (`.md`/`.txt`) vào `data/`, build lại, hỏi → AI trả lời theo tài liệu của chính bạn _(chưa mang file? dùng `sample_upload/`)_
-3. Đổi `CHUNK_SIZE` 200 / 500 / 1000 → so kết quả (hiểu chunking)
-4. (Bảo mật nhẹ) thả file chứa câu "lừa" → xem RAG có bị dẫn dắt không
-
-> 💬 Hỏi thử (chạy chắc): *"Quy trình xử lý sự cố ATTT?"* · *"USB cá nhân có được dùng không?"*
+> Quản model như quản app: tải · xem · dừng · gỡ.
 
 ---
 
 <!-- _class: divider -->
 
-## Phần 3 / 3 · Giới thiệu
-
-# Agent — cho LLM biết hành động
-
-### (Demo hôm nay — thực hành về tự khám phá)
+# Thực hành — RAG qua Open WebUI
 
 ---
 
-# Agent = LLM + Tools + ReAct loop
+# Nhu cầu giao diện
 
-<div class="columns">
-
-<div>
-
-**Giới hạn RAG**: chỉ tra → trả lời, **không hành động**
-
-**Agent** tự quyết gọi tool nào, dừng khi nào:
-
-1. **Thought** — cần gì tiếp?
-2. **Action** — gọi `tool(args)`
-3. **Observation** — kết quả → lặp
-
-<br>
-
-> Tool = function Python bất kỳ.
-> Paper gốc: **ReAct** (Princeton + Google, 2022)
-
-</div>
-
-<div class="center">
-
-![h:560](../docs/diagrams/03_react_loop.png)
-
-</div>
-
-</div>
+- **LLM** local đã chạy, 6 bước RAG đã hiểu
+- **Terminal** không hợp người dùng hằng ngày
+- Cần **giao diện**: lịch sử chat, kéo-thả file, đổi model
+- Giải pháp: **Open WebUI** — không cần code
 
 ---
 
-# Demo Agent
+# 6 bước trong Open WebUI
 
-![w:64%](../docs/screenshots/terminal_agent_trace.png)
+> Open WebUI tự động hóa 6 bước RAG — bạn chỉ chỉnh thông số.
 
-<div class="columns">
-
-<div>
-
-✅ **Hôm nay**: chỉ cần **thấy** agent hoạt động & hiểu nó khác RAG ở chỗ **biết hành động**
-
-</div>
-
-<div>
-
-🏠 **Về nhà**: thêm tool của bạn, thử multi-tool với model 4B+, đọc `log_reader.py` để hiểu **tool tự bảo vệ**
-
-</div>
-
-</div>
+| 6 bước | Trong Open WebUI |
+|---|---|
+| 1. Load | Upload / kéo-thả |
+| 2. Chunk | Chunk Size |
+| 3. Embed | Embedding Model |
+| 4. Store | Tự động lưu |
+| 5. Retrieve | Top K |
+| 6. Generate | Model + Prompt |
 
 ---
 
-# Sau 2 giờ bạn đã làm được
+# Open WebUI là gì
 
-<div class="success-box">
-
-✅ **LLM chạy 100% offline** trên máy của bạn
-
-✅ **Chatbot đọc tài liệu của bạn**, có trích nguồn
-
-✅ **Thấy agent hành động** — và có repo để tự nghịch tiếp
-
-</div>
-
-<br>
-
-### 3 việc làm tuần này
-
-1. Làm RAG cho **tài liệu thật** của bạn
-2. Thử **model khác** xem hợp máy mình không
-3. Đọc handbook phần bạn quan tâm (RAG nâng cao / Agent / bảo mật)
+- Giao diện chat **mã nguồn mở**, giống ChatGPT, chạy local
+- Lịch sử hội thoại, đổi model **1 click**, kéo-thả tài liệu
+- Quản trị RAG bằng giao diện — **không cần code**
+- Tài liệu + chat lưu volume `open-webui-data` → **không rời máy**
 
 ---
 
-# Một điểm bảo mật để mang về
+# Docker là gì
 
-<div class="highlight">
+> Nền tảng **container** — đóng gói phần mềm + mọi thứ nó cần, chạy giống nhau ở mọi máy.
 
-**Khi cho AI quyền đọc file / gọi công cụ → AI có thể bị "lừa".**
-Vì vậy công cụ phải **tự giới hạn mình** (sandbox), đừng tin LLM mù quáng.
-Đúng cho mọi app AI — không riêng lĩnh vực nào.
+- **Chuẩn công nghiệp**: hầu hết hệ thống production hiện đại dùng Docker
+- **Phổ biến**: hàng triệu lập trình viên · kho image khổng lồ (Docker Hub)
+- **Gọn & sạch**: 1 lệnh là có cả Open WebUI · gỡ không để lại rác
+- **An toàn**: chạy **cách ly** (isolated), không đụng hệ thống máy bạn
 
-</div>
+---
 
-<br>
+# Cài đặt Docker
 
-**Đọc thêm trong handbook** (đã cắt khỏi giờ giảng để gọn):
-RAG poisoning · PII trong embedding · bảo mật agent · roadmap production (vLLM, Qdrant, MCP) · khi nào KHÔNG nên dùng local.
+Tải **Docker Desktop** (miễn phí cá nhân): [docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop/)
+
+**Windows** — cần `winget` (sẵn trên Win 10/11):
+```powershell
+winget install Docker.DockerDesktop
+```
+
+**macOS** — cần **Homebrew** trước (mặc định chưa có → cài tại [brew.sh](https://brew.sh)):
+```bash
+brew install --cask docker
+```
+
+Cài xong → mở **Docker Desktop**, đợi báo "running".
+
+---
+
+# Cài đặt Open WebUI
+
+Docker Desktop phải đang **"running"**. Chọn **1** cách.
+
+**Cách 1 — Docker (cấu hình sẵn của repo):** chạy **trong thư mục repo**:
+```powershell
+docker compose up -d
+```
+**Cách 1b — Docker (cài độc lập, không có repo):**
+```powershell
+docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway `
+  -v open-webui:/app/backend/data --name open-webui ghcr.io/open-webui/open-webui:main
+```
+→ mở [localhost:3000](http://localhost:3000) · lần đầu tải image ~1GB
+
+**Cách 2 — pip (không cần Docker):**
+```bash
+pip install open-webui
+open-webui serve          # → mở localhost:8080
+```
+
+---
+
+# Khởi động & mở
+
+Kiểm tra trước khi mở:
+```bash
+ollama list
+docker ps
+```
+
+Mở **[localhost:3000](http://localhost:3000)** → chọn model **qwen3:1.7b**. Open WebUI **tự nối Ollama** (Settings → Connections).
+→ Giao diện & kết nối như **2 slide sau**.
+
+---
+
+<!-- _class: shot -->
+
+# Giao diện Open WebUI
+
+![](../docs/screenshots/open_webui_rag_real.png)
+
+---
+
+<!-- _class: shot -->
+
+# Kết nối Ollama với Open WebUI
+
+![](../docs/screenshots/owui_30_connections.png)
+
+---
+
+# Nạp tài liệu · Bước 1: Load
+
+Tạo **Knowledge base** = kho tài liệu của bạn (dùng lại nhiều lần):
+1. Vào **Workspace → Knowledge → + New Knowledge**
+2. Đặt tên kho → bấm **Create**
+3. Mở kho → bấm **+** → upload file (.md, .pdf, .docx)
+
+→ 2 slide sau: **màn tạo kho** & **kho đã có 6 tài liệu**.
+
+---
+
+<!-- _class: shot -->
+
+# Tạo Knowledge base
+
+![](../docs/screenshots/owui_22a_create_kb.png)
+
+---
+
+<!-- _class: shot -->
+
+# Kho "Quy chế ATTT" — 6 tài liệu
+
+![](../docs/screenshots/owui_22b_kb_6files.png)
+
+---
+
+# Chỉnh thông số · Bước 2–3–5
+
+Vào **Admin Panel → Settings → Documents**:
+
+| Tên | Giá trị |
+|---|---|
+| Chunk Size | ~500 |
+| Chunk Overlap | ~50 |
+| Embedding Model | nomic-embed-text |
+| Top K | 3 |
+| Hybrid Search | bật cho mã / từ khóa hiếm |
+
+→ Bấm **Save** rồi nạp lại tài liệu. 2 slide sau: **mặc định** → **sau khi đổi nomic**.
+
+---
+
+<!-- _class: shot -->
+
+# Settings → Documents (mặc định)
+
+![](../docs/screenshots/owui_23a_settings.png)
+
+---
+
+<!-- _class: shot -->
+
+# Đổi Embedding → nomic-embed-text
+
+![](../docs/screenshots/owui_23b_embedding_nomic.png)
+
+---
+
+# Trợ lý RAG · Bước 6: Generate
+
+Tạo **model trợ lý riêng** (Workspace → Models → +):
+- **Base model** `qwen3:1.7b` + **System Prompt** = bước *Generate*
+- System Prompt: *chỉ dùng tài liệu · thiếu → "không đề cập" · trích nguồn*
+- **Gắn Knowledge base** vào model → khỏi gõ `#` mỗi lần
+- Lưu thành **trợ lý** → chọn 1 click, dùng lại mọi lúc
+
+→ Slide sau: trợ lý "Quy chế ATTT" với Prompt + Knowledge.
+
+---
+
+<!-- _class: shot -->
+
+# Trợ lý "Quy chế ATTT": Prompt + Knowledge
+
+![](../docs/screenshots/owui_model_chat.png)
+
+---
+
+# Hỏi đáp có trích nguồn
+
+Chọn **trợ lý** vừa tạo → hỏi:
+```text
+Quy trình xử lý sự cố ATTT gồm những bước nào?
+```
+
+- Trả lời **bám tài liệu**, không bịa
+- **Trích nguồn**: hiện tên file → bấm xem đúng đoạn gốc
+- **Kiểm chứng được** — khác biệt cốt lõi với ChatGPT thường
+
+→ 2 slide sau: **truy hồi nguồn** → **câu trả lời có trích dẫn**.
+
+---
+
+<!-- _class: shot -->
+
+# Retrieve: truy hồi đúng nguồn
+
+![](../docs/screenshots/owui_24c_retrieved.png)
+
+---
+
+<!-- _class: shot -->
+
+# Trả lời kèm trích nguồn
+
+![](../docs/screenshots/owui_24a_answer_vi.png)
+
+---
+
+# Tinh chỉnh & kiểm chứng
+
+- **Top K** 3 → 5: đầy đặn hơn, chậm hơn
+- **Model** 1.7b → 4b: mạch lạc hơn
+- **Từ tự nhiên** hợp hơn mã ngắn (P1, MFA)
+- Hỏi câu **ngoài** tài liệu → *"Tài liệu không đề cập"* = RAG đúng
+
+---
+
+<!-- _class: divider -->
+
+# Áp dụng & Tổng kết
+
+---
+
+# Thành quả buổi học
+
+- Chạy **LLM** offline — dữ liệu không rời máy
+- Xây **RAG** local trên tài liệu của mình
+- Trả lời **có trích nguồn** — không cần code
+
+![w:620](../docs/diagrams/01_overall_architecture.png)
+
+> Hệ RAG local — tự xây, không cloud.
+
+---
+
+# Áp dụng trong tổ chức
+
+| Dữ liệu | Mục đích | Chọn |
+|---|---|---|
+| **Nhạy** | Tra cứu nội bộ | **Local** |
+| **Nhạy** | Tác vụ phức tạp | **Local** (4b/8b) |
+| Công khai | Chất lượng tối đa | Cloud |
+
+> Dữ liệu càng nhạy → ưu tiên Local.
+
+Use case: **HR** · **Pháp chế** · **R&D** · **CSKH**
+
+---
+
+# Checklist bảo mật
+
+- **Phân loại** tài liệu trước khi nạp
+- **Redact** PII trước khi index
+- **Phân quyền** — WEBUI_AUTH, mỗi người 1 tài khoản
+- **Audit log** — ai hỏi gì, truy vấn tài liệu nào
+
+![w:560](../docs/diagrams/08_security_risks.png)
 
 ---
 
 <!-- _class: lead -->
 
-# Cảm ơn các bạn
+# Cảm ơn!
 
-## Q&A — thảo luận
+## Bạn đã tự xây một hệ RAG local — dữ liệu không rời máy
 
-<br>
-
-📚 Repo: code + handbook + dataset mẫu + slide này
-
-🛡️ Trục cốt lõi: **dữ liệu của bạn không rời máy**
-
-🚀 Fork repo → thay tài liệu của bạn → build trợ lý của riêng mình
+Hỏi đáp  ·  PGS.TS. Lê Anh Cường
